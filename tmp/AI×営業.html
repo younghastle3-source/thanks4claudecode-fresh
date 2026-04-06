@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIビジネス戦略マップ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Hiragino Sans', sans-serif; background: #0f0f1a; color: #fff; padding: 40px 20px; }
+  h1 { text-align: center; font-size: 22px; color: #a78bfa; margin-bottom: 8px; letter-spacing: 2px; }
+  .subtitle { text-align: center; color: #6b7280; font-size: 13px; margin-bottom: 40px; }
+
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 13px; color: #6b7280; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+
+  /* 核心思想 */
+  .core { display: flex; gap: 12px; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .core-bad { background: #1f1f2e; border: 1px solid #374151; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; }
+  .core-bad .label { color: #ef4444; font-size: 11px; margin-bottom: 6px; }
+  .core-bad .text { font-size: 14px; color: #9ca3af; }
+  .arrow-right { font-size: 24px; color: #6b7280; }
+  .core-good { background: linear-gradient(135deg, #1e1b4b, #312e81); border: 1px solid #4f46e5; border-radius: 12px; padding: 16px 20px; text-align: center; flex: 1; }
+  .core-good .label { color: #818cf8; font-size: 11px; margin-bottom: 6px; }
+  .core-good .text { font-size: 14px; color: #e0e7ff; font-weight: bold; }
+
+  .quote { background: #1a1a2e; border-left: 3px solid #4f46e5; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #9ca3af; }
+  .quote strong { color: #a78bfa; }
+
+  /* 市場模倣戦略 */
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .flow-step { background: #1f1f2e; border: 1px solid #374151; border-radius: 10px; padding: 14px 16px; flex: 1; min-width: 140px; }
+  .flow-step .num { color: #4f46e5; font-size: 20px; font-weight: bold; margin-bottom: 4px; }
+  .flow-step .step-title { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  .flow-step .step-desc { font-size: 11px; color: #6b7280; line-height: 1.5; }
+  .flow-arrow { color: #4f46e5; font-size: 20px; flex-shrink: 0; }
+
+  .highlight-box { background: linear-gradient(135deg, #0f2027, #1a3a4a); border: 1px solid #0891b2; border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .highlight-box .hl-title { color: #22d3ee; font-size: 12px; margin-bottom: 8px; }
+  .highlight-box .hl-steps { display: flex; flex-direction: column; gap: 6px; }
+  .hl-step { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #cbd5e1; }
+  .hl-step .hl-num { background: #0891b2; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+
+  /* BtoB */
+  .btob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .btob-card { background: #1f1f2e; border-radius: 10px; padding: 14px; }
+  .btob-card.bad { border: 1px solid #374151; }
+  .btob-card.good { border: 1px solid #059669; background: linear-gradient(135deg, #0f2e1a, #1a3a2a); }
+  .btob-card .card-label { font-size: 11px; margin-bottom: 8px; }
+  .btob-card.bad .card-label { color: #ef4444; }
+  .btob-card.good .card-label { color: #10b981; }
+  .btob-item { font-size: 12px; color: #9ca3af; padding: 3px 0; }
+  .btob-item::before { content: '• '; }
+
+  /* ビーカー */
+  .beaker { display: flex; gap: 12px; }
+  .beaker-step { flex: 1; border-radius: 10px; padding: 16px; text-align: center; position: relative; }
+  .beaker-step.a { background: linear-gradient(160deg, #1e3a5f, #1a2744); border: 1px solid #3b82f6; }
+  .beaker-step.b { background: linear-gradient(160deg, #2d1b4e, #1e1040); border: 1px solid #8b5cf6; }
+  .beaker-step.c { background: linear-gradient(160deg, #1a3a2a, #0f2e1a); border: 1px solid #10b981; }
+  .beaker-letter { font-size: 32px; font-weight: 900; margin-bottom: 4px; }
+  .beaker-step.a .beaker-letter { color: #3b82f6; }
+  .beaker-step.b .beaker-letter { color: #8b5cf6; }
+  .beaker-step.c .beaker-letter { color: #10b981; }
+  .beaker-name { font-size: 13px; font-weight: bold; margin-bottom: 8px; }
+  .beaker-desc { font-size: 11px; color: #9ca3af; line-height: 1.6; }
+
+  /* バリュエーション */
+  .val-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .val-card { background: #1f1f2e; border: 1px solid #374151; border-radius: 10px; padding: 14px; text-align: center; }
+  .val-icon { font-size: 24px; margin-bottom: 8px; }
+  .val-title { font-size: 12px; font-weight: bold; color: #e0e7ff; margin-bottom: 6px; }
+  .val-desc { font-size: 11px; color: #6b7280; line-height: 1.5; }
+
+  /* 3タイプ */
+  .types { display: flex; gap: 10px; }
+  .type-card { flex: 1; border-radius: 10px; padding: 14px; text-align: center; }
+  .type-card:nth-child(1) { background: linear-gradient(160deg, #1e3a5f, #1a2744); border: 1px solid #3b82f6; }
+  .type-card:nth-child(2) { background: linear-gradient(160deg, #2d1b4e, #1e1040); border: 1px solid #8b5cf6; }
+  .type-card:nth-child(3) { background: linear-gradient(160deg, #3a1a1a, #2e1010); border: 1px solid #ef4444; }
+  .type-icon { font-size: 28px; margin-bottom: 6px; }
+  .type-name { font-size: 12px; font-weight: bold; margin-bottom: 4px; }
+  .type-desc { font-size: 10px; color: #9ca3af; }
+  .type-you { font-size: 9px; color: #10b981; margin-top: 6px; background: rgba(16,185,129,0.1); border-radius: 4px; padding: 2px 6px; display: inline-block; }
+
+  /* ロードマップ */
+  .roadmap { display: flex; flex-direction: column; gap: 0; }
+  .rm-step { display: flex; gap: 16px; align-items: flex-start; }
+  .rm-left { display: flex; flex-direction: column; align-items: center; }
+  .rm-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; flex-shrink: 0; }
+  .rm-line { width: 2px; flex: 1; min-height: 20px; margin: 4px 0; }
+  .rm-step:nth-child(1) .rm-dot { background: #1d4ed8; color: white; }
+  .rm-step:nth-child(2) .rm-dot { background: #7c3aed; color: white; }
+  .rm-step:nth-child(3) .rm-dot { background: #0891b2; color: white; }
+  .rm-step:nth-child(4) .rm-dot { background: #059669; color: white; }
+  .rm-step:nth-child(1) .rm-line { background: #1d4ed8; }
+  .rm-step:nth-child(2) .rm-line { background: #7c3aed; }
+  .rm-step:nth-child(3) .rm-line { background: #0891b2; }
+  .rm-content { background: #1f1f2e; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; flex: 1; }
+  .rm-title { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  .rm-desc { font-size: 11px; color: #6b7280; line-height: 1.5; }
+
+  /* アクション */
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .action-item { background: #1f1f2e; border: 1px solid #374151; border-radius: 8px; padding: 10px 12px; display: flex; gap: 8px; align-items: flex-start; }
+  .action-check { color: #4f46e5; font-size: 14px; flex-shrink: 0; }
+  .action-text { font-size: 12px; color: #d1d5db; line-height: 1.4; }
+
+  /* カスタマークラウド */
+  .empire-layers { display: flex; flex-direction: column; gap: 0; }
+  .empire-layer { padding: 14px 16px; position: relative; }
+  .empire-layer:nth-child(1) { background: linear-gradient(135deg, #1a0a2e, #2d1b69); border: 1px solid #7c3aed; border-radius: 12px 12px 0 0; }
+  .empire-layer:nth-child(2) { background: linear-gradient(135deg, #0a1e2e, #0c3d5a); border: 1px solid #0891b2; border-left: 1px solid #0891b2; border-right: 1px solid #0891b2; border-top: none; }
+  .empire-layer:nth-child(3) { background: linear-gradient(135deg, #0f2e1a, #1a4a2a); border: 1px solid #059669; border-top: none; border-radius: 0 0 12px 12px; }
+  .empire-layer-label { font-size: 10px; letter-spacing: 1px; margin-bottom: 6px; }
+  .empire-layer:nth-child(1) .empire-layer-label { color: #a78bfa; }
+  .empire-layer:nth-child(2) .empire-layer-label { color: #22d3ee; }
+  .empire-layer:nth-child(3) .empire-layer-label { color: #10b981; }
+  .empire-layer-title { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  .empire-layer-desc { font-size: 11px; color: #9ca3af; line-height: 1.5; }
+  .empire-key { background: rgba(251,191,36,0.1); border: 1px solid #f59e0b; border-radius: 8px; padding: 10px 14px; margin-top: 12px; }
+  .empire-key-text { font-size: 12px; color: #fcd34d; line-height: 1.6; }
+  .empire-compare { display: flex; gap: 10px; margin-top: 10px; }
+  .empire-cmp { flex: 1; background: #1f1f2e; border-radius: 8px; padding: 10px 12px; }
+  .empire-cmp.bad { border: 1px solid #374151; }
+  .empire-cmp.good { border: 1px solid #7c3aed; }
+  .empire-cmp .cmp-label { font-size: 10px; margin-bottom: 4px; }
+  .empire-cmp.bad .cmp-label { color: #6b7280; }
+  .empire-cmp.good .cmp-label { color: #a78bfa; }
+  .empire-cmp .cmp-text { font-size: 12px; color: #d1d5db; }
+
+  /* ピラミッド */
+  .pyramid-wrap { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+  .pyramid-layer { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 10px; }
+  .py3 { background: linear-gradient(135deg, #2d1b69, #1a0a3e); border: 1px solid #7c3aed; }
+  .py2 { background: linear-gradient(135deg, #0c3d5a, #0a1e2e); border: 1px solid #0891b2; }
+  .py1 { background: linear-gradient(135deg, #1a4a2a, #0f2e1a); border: 1px solid #059669; }
+  .py-connector { display: flex; justify-content: center; padding: 2px 0; }
+  .py-line { width: 2px; height: 16px; }
+  .py3 + .py-connector .py-line { background: #7c3aed; }
+  .py2 + .py-connector .py-line { background: #0891b2; }
+  .py-icon { font-size: 28px; flex-shrink: 0; width: 40px; text-align: center; }
+  .py-content { flex: 1; }
+  .py-label { font-size: 10px; letter-spacing: 1px; margin-bottom: 3px; }
+  .py3 .py-label { color: #a78bfa; }
+  .py2 .py-label { color: #22d3ee; }
+  .py1 .py-label { color: #10b981; }
+  .py-title { font-size: 13px; font-weight: bold; margin-bottom: 3px; }
+  .py-desc { font-size: 11px; color: #9ca3af; }
+
+  /* 価値比較 */
+  .val-compare-wrap { background: #0f0f1e; border: 1px solid #2a2a4a; border-radius: 12px; padding: 16px; }
+  .val-compare-title { font-size: 11px; color: #6b7280; letter-spacing: 1px; margin-bottom: 12px; text-align: center; }
+  .val-compare-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .vc-box { flex: 1; border-radius: 10px; padding: 14px; }
+  .vc-bad { background: #1a1a1a; border: 1px solid #374151; }
+  .vc-good { background: linear-gradient(135deg, #1e1040, #2d1b69); border: 1px solid #7c3aed; }
+  .vc-tag { font-size: 10px; margin-bottom: 8px; color: #6b7280; }
+  .vc-bad .vc-tag { color: #6b7280; }
+  .vc-good .vc-tag { color: #a78bfa; }
+  .vc-quote { font-size: 13px; font-weight: bold; line-height: 1.5; margin-bottom: 10px; color: #d1d5db; }
+  .vc-meter-wrap { }
+  .vc-meter-label { font-size: 10px; color: #6b7280; margin-bottom: 4px; }
+  .vc-meter { background: #111; border-radius: 4px; height: 6px; overflow: hidden; margin-bottom: 4px; }
+  .vc-bar { height: 100%; border-radius: 4px; background: #374151; transition: width 1s; }
+  .bad-meter .vc-bar { background: #374151; }
+  .vc-meter-text { font-size: 10px; color: #6b7280; line-height: 1.4; }
+  .vc-good .vc-meter-text { color: #a78bfa; }
+  .vc-vs { font-size: 11px; font-weight: bold; color: #4b5563; flex-shrink: 0; padding: 0 4px; }
+  .vc-insight { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #fcd34d; line-height: 1.7; text-align: center; }
+  .vc-insight strong { color: #fbbf24; }
+  .vc-insight-icon { margin-right: 4px; }
+
+  .divider { border: none; border-top: 1px solid #1f1f2e; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<h1>AI ビジネス戦略マップ</h1>
+<p class="subtitle">涼馬式 × おっくんの仕事の軸</p>
+
+<!-- 核心思想 -->
+<div class="section">
+  <div class="section-title">核心思想</div>
+  <div class="core">
+    <div class="core-bad">
+      <div class="label">❌ 日本的発想</div>
+      <div class="text">売上・利益率で語る</div>
+    </div>
+    <div class="arrow-right">→</div>
+    <div class="core-good">
+      <div class="label">✅ グローバル思考</div>
+      <div class="text">バリュエーション（夢）で語る</div>
+    </div>
+  </div>
+  <div class="quote">
+    イーロン・マスクは「<strong>火星に行く</strong>」と言った。「車を売る」とは言わなかった。<br>
+    夢を語ることで投資と支持が集まり、価値が青天井になる。
+  </div>
+</div>
+
+<!-- 市場模倣戦略 -->
+<div class="section">
+  <div class="section-title">市場模倣戦略（最も確実な成功法則）</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="num">01</div>
+      <div class="step-title">特定</div>
+      <div class="step-desc">数千万で売れてる<br>AIツールを見つける</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="num">02</div>
+      <div class="step-title">開発</div>
+      <div class="step-desc">MIYABI（Claude Code）<br>で同等品を作る</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="num">03</div>
+      <div class="step-title">販売</div>
+      <div class="step-desc">「大手も導入」を武器に<br>同業他社へ500万で売る</div>
+    </div>
+  </div>
+  <div class="highlight-box">
+    <div class="hl-title">🏗️ おっくんの具体的チャンス（建設業）</div>
+    <div class="hl-steps">
+      <div class="hl-step"><div class="hl-num">1</div><div>出張先の建設会社が導入するAIツールを調査（機能・ベンダー・価格）</div></div>
+      <div class="hl-step"><div class="hl-num">2</div><div>requirements-definition.mdを基にMIYABIで模倣品を構築</div></div>
+      <div class="hl-step"><div class="hl-num">3</div><div>同業他社に競争力ある価格で販売 → 実績が次の武器になる</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BtoB -->
+<div class="section">
+  <div class="section-title">ターゲット：BtoB に完全シフト</div>
+  <div class="btob-grid">
+    <div class="btob-card bad">
+      <div class="card-label">❌ BtoC（個人向け）を避ける</div>
+      <div class="btob-item">単価が低い</div>
+      <div class="btob-item">クレームが多い</div>
+      <div class="btob-item">スケールしない</div>
+    </div>
+    <div class="btob-card good">
+      <div class="card-label">✅ BtoB（法人向け）を狙う</div>
+      <div class="btob-item">一件で数百万〜数千万</div>
+      <div class="btob-item">意思決定者が明確</div>
+      <div class="btob-item">実績が次の案件の武器</div>
+    </div>
+  </div>
+</div>
+
+<!-- ビーカーシステム -->
+<div class="section">
+  <div class="section-title">ビーカーシステム（高単価営業の3ステップ）</div>
+  <div class="beaker">
+    <div class="beaker-step a">
+      <div class="beaker-letter">A</div>
+      <div class="beaker-name">整理</div>
+      <div class="beaker-desc">人脈リストを整理<br>富裕層・法人に繋がる<br>7〜10人に絞る</div>
+    </div>
+    <div class="beaker-step b">
+      <div class="beaker-letter">B</div>
+      <div class="beaker-name">呼び込み</div>
+      <div class="beaker-desc">AIの価値を提案<br>「数千万と同等が<br>500万で可能」</div>
+    </div>
+    <div class="beaker-step c">
+      <div class="beaker-letter">C</div>
+      <div class="beaker-name">クロージング</div>
+      <div class="beaker-desc">具体的な商談・デモ<br>バリュエーションで演出<br>入金まで完結</div>
+    </div>
+  </div>
+</div>
+
+<!-- バリュエーション -->
+<div class="section">
+  <div class="section-title">バリュエーション戦略：「見せ方」が価値を創る</div>
+  <div class="val-grid">
+    <div class="val-card">
+      <div class="val-icon">📰</div>
+      <div class="val-title">日経新聞</div>
+      <div class="val-desc">経済動向を理解してる専門家に見える</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon">📒</div>
+      <div class="val-title">イエローパッド</div>
+      <div class="val-desc">トップコンサルと同じ土俵に立てる</div>
+    </div>
+    <div class="val-card">
+      <div class="val-icon">🎯</div>
+      <div class="val-title">断る勇気</div>
+      <div class="val-desc">安易に受けすぎると安く見られる</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3タイプ -->
+<div class="section">
+  <div class="section-title">AI時代に生き残る3タイプ</div>
+  <div class="types">
+    <div class="type-card">
+      <div class="type-icon">🧠</div>
+      <div class="type-name">優れた開発者</div>
+      <div class="type-desc">技術でAIを動かす</div>
+    </div>
+    <div class="type-card">
+      <div class="type-icon">💰</div>
+      <div class="type-name">金を取れる営業</div>
+      <div class="type-desc">高単価案件を取れる</div>
+      <div class="type-you">← おっくんはここ</div>
+    </div>
+    <div class="type-card">
+      <div class="type-icon">🔥</div>
+      <div class="type-name">面白い良い奴</div>
+      <div class="type-desc">人間的魅力で繋がる</div>
+      <div class="type-you">← ここも</div>
+    </div>
+  </div>
+</div>
+
+<!-- ロードマップ -->
+<div class="section">
+  <div class="section-title">建設業AIビジネス ロードマップ</div>
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-left">
+        <div class="rm-dot">1</div>
+        <div class="rm-line"></div>
+      </div>
+      <div class="rm-content">
+        <div class="rm-title">調査</div>
+        <div class="rm-desc">出張先の建設会社が導入するAIツールを調べる。ベンダー名・機能・価格（数千万円規模）を把握。</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-left">
+        <div class="rm-dot">2</div>
+        <div class="rm-line"></div>
+      </div>
+      <div class="rm-content">
+        <div class="rm-title">開発</div>
+        <div class="rm-desc">requirements-definition.mdを基にMIYABIでIssueを投げて模倣品を構築。</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-left">
+        <div class="rm-dot">3</div>
+        <div class="rm-line"></div>
+      </div>
+      <div class="rm-content">
+        <div class="rm-title">実績作り</div>
+        <div class="rm-desc">出張先 or 地元の建設会社に無料 or 低価格で導入。「あの会社も使ってる」実績を作る。</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-left">
+        <div class="rm-dot">4</div>
+      </div>
+      <div class="rm-content">
+        <div class="rm-title">横展開</div>
+        <div class="rm-desc">同業他社に500万円で販売。ビーカーシステムで営業リストを回す。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- カスタマークラウド -->
+<div class="section">
+  <div class="section-title">ケーススタディ：カスタマークラウドの構想（バリュエーション戦略の究極例）</div>
+
+  <!-- ピラミッド図 -->
+  <div class="pyramid-wrap">
+    <div class="pyramid-layer py3">
+      <div class="py-icon">🏰</div>
+      <div class="py-content">
+        <div class="py-label">LAYER 3 ／ 帝国の構築</div>
+        <div class="py-title">企業が事業を「建てる」プラットフォーム</div>
+        <div class="py-desc">帝国に乗ること自体が価値 → 事業の売買が容易に</div>
+      </div>
+    </div>
+    <div class="py-connector"><div class="py-line"></div></div>
+    <div class="pyramid-layer py2">
+      <div class="py-icon">⛏️</div>
+      <div class="py-content">
+        <div class="py-label">LAYER 2 ／ 実物資産のトークン化</div>
+        <div class="py-title">山の金・銀をデジタル資産化</div>
+        <div class="py-desc">未採掘資源 → ブロックチェーン上で世界取引可能に</div>
+      </div>
+    </div>
+    <div class="py-connector"><div class="py-line"></div></div>
+    <div class="pyramid-layer py1">
+      <div class="py-icon">🌍</div>
+      <div class="py-content">
+        <div class="py-label">LAYER 1 ／ グローバル金融インフラ</div>
+        <div class="py-title">新興国に銀行不要の金融基盤を</div>
+        <div class="py-desc">アフリカ等 → ブロックチェーン基盤の決済・資産管理</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 価値の比較：ビジュアル -->
+  <div class="val-compare-wrap">
+    <div class="val-compare-title">なぜこれがバリュエーション戦略の教科書なのか</div>
+    <div class="val-compare-row">
+      <div class="vc-box vc-bad">
+        <div class="vc-tag">❌ 普通の語り方</div>
+        <div class="vc-quote">「金融SaaSを<br>作ります」</div>
+        <div class="vc-meter-wrap">
+          <div class="vc-meter-label">評価軸</div>
+          <div class="vc-meter bad-meter">
+            <div class="vc-bar" style="width:30%"></div>
+          </div>
+          <div class="vc-meter-text">売上・顧客数で比較される</div>
+        </div>
+      </div>
+      <div class="vc-vs">VS</div>
+      <div class="vc-box vc-good">
+        <div class="vc-tag">✅ バリュエーション思考</div>
+        <div class="vc-quote">「アフリカの金融<br>インフラを変える<br>帝国を作る」</div>
+        <div class="vc-meter-wrap">
+          <div class="vc-meter-label">評価軸</div>
+          <div class="vc-meter good-meter">
+            <div class="vc-bar" style="width:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div>
+          </div>
+          <div class="vc-meter-text">比較対象が消える → 値段は「提示」に</div>
+        </div>
+      </div>
+    </div>
+    <div class="vc-insight">
+      <span class="vc-insight-icon">💡</span>
+      語るビジョンが大きいほど比較対象がなくなる。<br>
+      比較対象がなければ値段は <strong>「交渉」→「提示」</strong> に変わる。
+    </div>
+  </div>
+</div>
+
+<!-- アクションアイテム -->
+<div class="section">
+  <div class="section-title">今すぐやること</div>
+  <div class="actions">
+    <div class="action-item">
+      <div class="action-check">☐</div>
+      <div class="action-text">出張先で導入されるAIツールの詳細を調べる</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">☐</div>
+      <div class="action-text">日経新聞を購読する</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">☐</div>
+      <div class="action-text">人脈をビーカーシステムで整理（7〜10人に絞る）</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">☐</div>
+      <div class="action-text">今日学んだ戦略を2人に話す</div>
+    </div>
+    <div class="action-item" style="grid-column: 1 / -1;">
+      <div class="action-check">☐</div>
+      <div class="action-text">MIYABIに建設業AIのIssueを投げる</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
