@@ -9,7 +9,7 @@
 ## focus
 
 ```yaml
-current: plan-template  # 現在作業中のプロジェクト名
+current: gym-business-plan  # 現在作業中のプロジェクト名
 project: plan/project.md
 ```
 
@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: null
-branch: null
+active: plan/playbook-gym-business-plan.md
+branch: claude/gym-business-plan-nYgyP
 last_archived: plan/archive/playbook-m082-archive-check.md
 ```
 
@@ -28,9 +28,16 @@ last_archived: plan/archive/playbook-m082-archive-check.md
 ## goal
 
 ```yaml
-milestone: null
-phase: null
-done_criteria: []
+milestone: null  # thanks4claudecode の milestone とは独立した外部タスク
+phase: p1
+done_criteria:
+  - "docs/gym-business/README.md が存在し、全ドキュメントへのインデックスを提供している"
+  - "docs/gym-business/business-plan-template.md が存在し、事業計画書の全セクション（9 項目以上）を含む"
+  - "docs/gym-business/market-research.md が存在し、市場規模・顧客像・立地観点のリサーチがまとまっている"
+  - "docs/gym-business/competitor-analysis.md が存在し、競合カテゴリ（3 種以上）ごとの比較がまとまっている"
+  - "docs/gym-business/revenue-model.md が存在し、料金プラン・収支試算・損益分岐点の計算式が含まれている"
+  - "docs/gym-business/opening-strategy.md が存在し、開業までのロードマップ（12〜18 ヶ月）が時系列で整理されている"
+  - "docs/gym-business/how-to-write-business-plan.md が存在し、事業計画書の書き方ガイド（教育コンテンツ）が含まれている"
 ```
 
 ---
