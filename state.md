@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-peak-week-skill.md
-branch: feat/peak-week-skill
+active: plan/playbook-infographic-skill.md
+branch: feat/infographic-skill
 last_archived: plan/archive/playbook-discord-ai-secretary-archive.md
 ```
 
@@ -28,13 +28,16 @@ last_archived: plan/archive/playbook-discord-ai-secretary-archive.md
 ## goal
 
 ```yaml
-milestone: peak-week-skill
+milestone: infographic-skill
 phase: p_final
 done_criteria:
-  - ".claude/skills/peak-week-water-manipulation/SKILL.md が存在する"
-  - "SKILL.md に frontmatter（name, description, triggers）が含まれる"
-  - "「水分の移動」核心理論・Day1〜Day7プロトコル・水抜き非推奨・サプリ・応用範囲が漏れなく含まれる"
-  - "命名・frontmatter 形式が既存フィットネス系スキル（hyrox-fitness-racing 等）と一貫している"
+  - ".claude/skills/html-graphic-recording/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
+  - "カラースキーム（palette/primary/accent/mono）の仕様が記載されている"
+  - "タイポグラフィ仕様（フォント名・CSSクラス）が記載されている"
+  - "レイアウト構造（レスポンシブ・グラスモーフィズム・カード型・黄金比グリッド）が記載されている"
+  - "視覚効果・データ可視化技法（シャドウ/テクスチャ/データ可視化/接続線）が記載されている"
+  - "技術的仕様の HTML/CSS 実装サンプルが含まれている"
+  - "命名・frontmatter 形式が既存スキル（becofit-gym-startup / md-converter 等）と一貫している"
 ```
 
 ---
@@ -42,7 +45,7 @@ done_criteria:
 ## session
 
 ```yaml
-last_start: 2026-06-27 16:05:13
+last_start: 2026-06-27 16:32:50
 last_clear: 2025-12-13 00:30:00
 ```
 
