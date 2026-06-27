@@ -18,9 +18,9 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: null
-branch: null
-last_archived: plan/archive/playbook-m082-archive-check.md
+active: plan/playbook-hyrox-skill.md
+branch: feat/hyrox-skill
+last_archived: plan/archive/playbook-discord-ai-secretary-archive.md
 ```
 
 ---
@@ -28,9 +28,13 @@ last_archived: plan/archive/playbook-m082-archive-check.md
 ## goal
 
 ```yaml
-milestone: null
-phase: null
-done_criteria: []
+milestone: hyrox-skill
+phase: p_final
+done_criteria:
+  - ".claude/skills/hyrox-fitness-racing/SKILL.md が存在する"
+  - "SKILL.md に frontmatter（name, description, triggers）が含まれる"
+  - "ユーザー提供の全12セクションの見出しが SKILL.md に存在する"
+  - "命名・frontmatter 形式が既存フィットネス系スキルと一貫している"
 ```
 
 ---
@@ -38,7 +42,7 @@ done_criteria: []
 ## session
 
 ```yaml
-last_start: 2025-12-19 01:48:26
+last_start: 2026-06-27 15:34:02
 last_clear: 2025-12-13 00:30:00
 ```
 
