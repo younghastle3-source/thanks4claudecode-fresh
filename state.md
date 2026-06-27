@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-hyrox-skill.md
-branch: feat/hyrox-skill
+active: plan/playbook-peak-week-skill.md
+branch: feat/peak-week-skill
 last_archived: plan/archive/playbook-discord-ai-secretary-archive.md
 ```
 
@@ -28,13 +28,13 @@ last_archived: plan/archive/playbook-discord-ai-secretary-archive.md
 ## goal
 
 ```yaml
-milestone: hyrox-skill
+milestone: peak-week-skill
 phase: p_final
 done_criteria:
-  - ".claude/skills/hyrox-fitness-racing/SKILL.md が存在する"
+  - ".claude/skills/peak-week-water-manipulation/SKILL.md が存在する"
   - "SKILL.md に frontmatter（name, description, triggers）が含まれる"
-  - "ユーザー提供の全12セクションの見出しが SKILL.md に存在する"
-  - "命名・frontmatter 形式が既存フィットネス系スキルと一貫している"
+  - "「水分の移動」核心理論・Day1〜Day7プロトコル・水抜き非推奨・サプリ・応用範囲が漏れなく含まれる"
+  - "命名・frontmatter 形式が既存フィットネス系スキル（hyrox-fitness-racing 等）と一貫している"
 ```
 
 ---
@@ -42,7 +42,7 @@ done_criteria:
 ## session
 
 ```yaml
-last_start: 2026-06-27 15:34:02
+last_start: 2026-06-27 16:05:13
 last_clear: 2025-12-13 00:30:00
 ```
 
