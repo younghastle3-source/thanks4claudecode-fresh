@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-threads-post-checklist-skill.md
-branch: feat/threads-post-checklist-skill
+active: plan/playbook-human-touch-writing-skill.md
+branch: feat/human-touch-writing-skill
 last_archived: plan/archive/playbook-m082-archive-check.md
 ```
 
@@ -28,14 +28,14 @@ last_archived: plan/archive/playbook-m082-archive-check.md
 ## goal
 
 ```yaml
-milestone: threads-post-checklist-skill
+milestone: human-touch-writing-skill
 phase: p_final
 done_criteria:
-  - ".claude/skills/threads-post-checklist/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
-  - "8つのチェック項目（誰に向けて/投稿時間/読者視点/書き出し/長文/専門用語/詰め込み/日記）が全て記載されている"
-  - "各チェック項目に「なぜ重要か」のポイント説明が記載されている"
-  - "各チェック項目に3つのサブチェックリストが記載されている"
-  - "frontmatter 形式が既存スキル（becofit-gym-startup, threads-shukyaku-7days 等）と一貫している"
+  - ".claude/skills/human-touch-writing/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
+  - "人間味ライティングの3つの具体策（体験ストーリー・会話スタイル・PREP法）が全て記載されている"
+  - "ChatGPT活用の3つのプロンプト（口語調変換・冗長削除・PREP法再構成）が記載されている"
+  - "AI出力チェックの3つの視点（声出し確認・AIっぽい記号の整理・体験と感情の確認）が記載されている"
+  - "frontmatter 形式が既存スキル（becofit-gym-startup, threads-post-checklist 等）と一貫している"
 ```
 
 ---
