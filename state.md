@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-human-touch-writing-skill.md
-branch: feat/human-touch-writing-skill
+active: plan/playbook-trust-building-posts-skill.md
+branch: feat/trust-building-posts-skill
 last_archived: plan/archive/playbook-m082-archive-check.md
 ```
 
@@ -28,14 +28,14 @@ last_archived: plan/archive/playbook-m082-archive-check.md
 ## goal
 
 ```yaml
-milestone: human-touch-writing-skill
+milestone: trust-building-posts-skill
 phase: p_final
 done_criteria:
-  - ".claude/skills/human-touch-writing/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
-  - "人間味ライティングの3つの具体策（体験ストーリー・会話スタイル・PREP法）が全て記載されている"
-  - "ChatGPT活用の3つのプロンプト（口語調変換・冗長削除・PREP法再構成）が記載されている"
-  - "AI出力チェックの3つの視点（声出し確認・AIっぽい記号の整理・体験と感情の確認）が記載されている"
-  - "frontmatter 形式が既存スキル（becofit-gym-startup, threads-post-checklist 等）と一貫している"
+  - ".claude/skills/trust-building-posts/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
+  - "核心の気づき（フォロワー数より信頼・安心感が申し込みにつながる）が記載されている"
+  - "4つの投稿テーマ（悩み寄り添い・解決ヒント・お客様の声・自分の思い）が全て記載されている"
+  - "各テーマに具体例または実践のポイントが記載されている"
+  - "frontmatter 形式が既存スキル（human-touch-writing, becofit-gym-startup 等）と一貫している"
 ```
 
 ---
