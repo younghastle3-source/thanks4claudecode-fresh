@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-threads-opening-buzzwords-skill.md
-branch: feat/threads-opening-buzzwords-skill
+active: plan/playbook-threads-post-checklist-skill.md
+branch: feat/threads-post-checklist-skill
 last_archived: plan/archive/playbook-m082-archive-check.md
 ```
 
@@ -28,13 +28,13 @@ last_archived: plan/archive/playbook-m082-archive-check.md
 ## goal
 
 ```yaml
-milestone: threads-opening-buzzwords-skill
+milestone: threads-post-checklist-skill
 phase: p_final
 done_criteria:
-  - ".claude/skills/threads-opening-buzzwords/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
-  - "6カテゴリ（呼びかけ・衝撃暴露・有益裏技・重要念押し・共感ターゲット・アクション短文）が全て記載されている"
-  - "50個（またはそれ以上）のバズワードフレーズが収録されている"
-  - "各カテゴリに「いつ/どんな投稿で使うか」の使用シーンが記載されている"
+  - ".claude/skills/threads-post-checklist/SKILL.md が存在し frontmatter（name, description, triggers）を含む"
+  - "8つのチェック項目（誰に向けて/投稿時間/読者視点/書き出し/長文/専門用語/詰め込み/日記）が全て記載されている"
+  - "各チェック項目に「なぜ重要か」のポイント説明が記載されている"
+  - "各チェック項目に3つのサブチェックリストが記載されている"
   - "frontmatter 形式が既存スキル（becofit-gym-startup, threads-shukyaku-7days 等）と一貫している"
 ```
 
