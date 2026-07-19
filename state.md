@@ -18,8 +18,8 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: null
-branch: null
+active: plan/playbook-mark-brand-identity-skill.md
+branch: feat/mark-brand-identity-skill
 last_archived: plan/archive/playbook-m082-archive-check.md
 ```
 
@@ -28,9 +28,14 @@ last_archived: plan/archive/playbook-m082-archive-check.md
 ## goal
 
 ```yaml
-milestone: null
-phase: null
-done_criteria: []
+milestone: mark-brand-identity-skill
+phase: p_final
+done_criteria:
+  - ".claude/skills/mark-brand-identity/SKILL.md が存在し、frontmatter（name: mark-brand-identity, description, triggers）を含む"
+  - "MISSION / VISION / CONCEPT / PHILOSOPHY の4要素が全て記載されている"
+  - "CORE MESSAGE「目的地は、人だ」が含まれている"
+  - "おっくんのStrength（泥臭く積み上げられること / 人の気持ちが分かること / 構造化して伝えられること）が全て含まれている"
+  - "BRAND PROMISE が含まれている"
 ```
 
 ---
