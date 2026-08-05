@@ -30,7 +30,7 @@ previous: plan/playbook-threads-community-skill.md  # discarded（ユーザー�
 
 ```yaml
 milestone: null
-phase: p1
+phase: p_final (done)
 done_criteria:
   - "「.claude/skills/threads-pdca/SKILL.md」の先頭 frontmatter ブロック内に『name: threads-pdca』（ディレクトリ名と一致）と description: が存在し、description に「」で囲まれたトリガーフレーズが2個以上含まれている"
   - "SKILL.md に『## ワークフロー1』〜『## ワークフロー4』の4見出しが存在し、各セクション内に『発火フレーズ』行・番号付きステップ3個以上・references/ 配下ファイルへの参照が存在する"
