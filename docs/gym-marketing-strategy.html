@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おっくんジム戦略マップ v3 — 月収200〜300万円の設計図</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
+    background: #f5f4f0;
+    color: #1a1a1a;
+    padding: 56px 24px;
+    min-height: 100vh;
+  }
+  .page { max-width: 1000px; margin: 0 auto; }
+
+  /* ===== HEADER ===== */
+  .header { text-align: center; margin-bottom: 72px; }
+  .header .eyebrow {
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: #aaa; margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 40px; font-weight: 900; letter-spacing: -2px;
+    color: #111; line-height: 1.1; margin-bottom: 12px;
+  }
+  .header h1 em { font-style: normal; color: #ff6b35; }
+  .header .sub {
+    font-size: 15px; color: #888; line-height: 1.8;
+    max-width: 540px; margin: 0 auto 28px;
+  }
+  .mission-pill {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-left: 4px solid #ff6b35;
+    border-radius: 4px;
+    padding: 16px 24px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.8;
+    text-align: left;
+    max-width: 620px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .mission-pill strong { color: #1a1a1a; }
+
+  /* ===== SECTION ===== */
+  .section { margin-bottom: 64px; }
+  .section-label {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: #ff6b35; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 14px;
+    font-weight: 700;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: #e5e5e5;
+  }
+
+  /* ===== CARD BASE ===== */
+  .card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+
+  /* ===== INDUSTRY HISTORY ===== */
+  .history-intro {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 14px;
+    padding: 32px 36px; margin-bottom: 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .history-intro-title {
+    font-size: 18px; font-weight: 900; color: #111; margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .history-intro-body {
+    font-size: 14px; color: #555; line-height: 1.9;
+  }
+  .history-intro-body strong { color: #ff6b35; }
+
+  .history-phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .phase-box {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+    padding: 24px 20px; position: relative; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .phase-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+  .hph1::before { background: #6366f1; }
+  .hph2::before { background: #f59e0b; }
+  .hph3::before { background: #3b82f6; }
+  .hph4::before { background: #ff6b35; }
+  .phase-box-era {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: #bbb; margin-bottom: 6px;
+  }
+  .phase-box-title { font-size: 13px; font-weight: 800; color: #111; margin-bottom: 10px; }
+  .phase-box-body { font-size: 12px; color: #777; line-height: 1.7; }
+  .phase-box-body strong { color: #333; }
+
+  /* ===== LIMIT SECTION ===== */
+  .limit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .limit-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+    padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .limit-card.danger { border-color: #fecaca; background: #fff8f8; }
+  .limit-title { font-size: 14px; font-weight: 800; color: #111; margin-bottom: 16px; }
+  .limit-title.red { color: #dc2626; }
+  .limit-calc {
+    background: #f9f9f9; border-radius: 8px; padding: 14px 16px;
+    font-size: 12px; color: #555; line-height: 2; margin-bottom: 14px;
+    font-family: monospace;
+  }
+  .limit-calc .calc-result { color: #dc2626; font-weight: 700; }
+  .limit-items { display: flex; flex-direction: column; gap: 8px; }
+  .limit-item {
+    font-size: 12px; color: #666; padding-left: 12px;
+    border-left: 2px solid #fca5a5; line-height: 1.6;
+  }
+
+  /* ===== MARKETING WHY ===== */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .why-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 14px;
+    padding: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .why-source {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 10px; font-weight: 700;
+  }
+  .ws-ryoma { color: #ff6b35; }
+  .ws-kubota { color: #3b82f6; }
+  .why-title { font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px; letter-spacing: -0.5px; }
+  .why-subtitle { font-size: 12px; color: #aaa; margin-bottom: 24px; }
+  .why-point { margin-bottom: 20px; }
+  .why-point-title {
+    font-size: 13px; font-weight: 800; color: #111; margin-bottom: 6px;
+    padding-left: 12px; border-left: 3px solid;
+  }
+  .ws-ryoma-border { border-left-color: #ff6b35; }
+  .ws-kubota-border { border-left-color: #3b82f6; }
+  .why-point-body { font-size: 12px; color: #666; line-height: 1.8; padding-left: 15px; }
+  .why-point-body strong { color: #333; }
+  .why-quote {
+    background: #f9f9f9; border-radius: 8px; padding: 14px 16px;
+    font-size: 13px; font-weight: 700; color: #333; line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  /* ===== COMPETITIVE MAP ===== */
+  .comp-map { background: #fff; border: 1px solid #e8e8e8; border-radius: 14px; padding: 36px; box-shadow: 0 2px 16px rgba(0,0,0,0.04); }
+  .comp-axis { display: flex; flex-direction: column; gap: 0; }
+  .axis-top {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: #bbb; padding-bottom: 12px; display: flex; justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0; margin-bottom: 4px;
+  }
+  .comp-row {
+    display: grid; grid-template-columns: 150px 1fr;
+    gap: 16px; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid #f5f5f5;
+  }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-price { font-size: 12px; color: #aaa; text-align: right; line-height: 1.5; }
+  .comp-bar-wrap { display: flex; align-items: center; gap: 10px; }
+  .comp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .comp-name { font-size: 12px; color: #666; line-height: 1.5; }
+  .comp-row.gap-row {
+    background: linear-gradient(135deg, #fff8f5, #fff);
+    margin: 0 -36px; padding: 18px 36px;
+    border: none; border-top: 2px dashed #ffd4c2; border-bottom: 2px dashed #ffd4c2;
+  }
+  .comp-row.gap-row .comp-name { color: #1a1a1a; font-weight: 800; font-size: 14px; }
+  .comp-row.gap-row .comp-price { color: #ff6b35; font-weight: 700; font-size: 13px; }
+  .gap-badge {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    background: #ff6b35; color: #fff; padding: 3px 10px; border-radius: 10px;
+    white-space: nowrap; font-weight: 700;
+  }
+  .axis-bottom {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: #bbb; padding-top: 12px; text-align: right;
+  }
+
+  /* ===== PRICE PLANS ===== */
+  .price-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .price-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+    padding: 28px 24px; position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .price-card.featured {
+    border: 2px solid #ff6b35;
+    box-shadow: 0 4px 24px rgba(255,107,53,0.12);
+  }
+  .price-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #ff6b35; color: #fff; font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 3px 14px; border-radius: 10px;
+    white-space: nowrap; font-weight: 700;
+  }
+  .price-plan-tag { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+  .price-plan-name { font-size: 15px; font-weight: 800; color: #111; margin-bottom: 4px; }
+  .price-plan-desc { font-size: 12px; color: #999; margin-bottom: 20px; line-height: 1.6; }
+  .price-amount { font-size: 36px; font-weight: 900; letter-spacing: -1.5px; color: #111; line-height: 1; margin-bottom: 4px; }
+  .price-amount span { font-size: 16px; font-weight: 400; color: #aaa; }
+  .price-note { font-size: 11px; color: #bbb; margin-bottom: 20px; }
+  .price-items { display: flex; flex-direction: column; gap: 8px; }
+  .price-item { font-size: 12px; color: #777; padding-left: 12px; border-left: 2px solid #f0f0f0; line-height: 1.5; }
+
+  /* ===== GOAL ===== */
+  .goal-box {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 16px;
+    padding: 40px; display: grid; grid-template-columns: auto 1fr;
+    gap: 48px; align-items: center;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .goal-number-block { text-align: center; }
+  .goal-big { font-size: 84px; font-weight: 900; color: #ff6b35; line-height: 1; letter-spacing: -5px; }
+  .goal-big sup { font-size: 28px; vertical-align: top; margin-top: 16px; display: inline-block; }
+  .goal-big sub { font-size: 20px; font-weight: 400; color: #bbb; letter-spacing: 0; }
+  .goal-label { font-size: 10px; color: #bbb; letter-spacing: 2px; margin-top: 6px; text-transform: uppercase; }
+  .goal-breakdown { display: flex; flex-direction: column; gap: 14px; }
+  .goal-row { display: grid; grid-template-columns: 160px 1fr 72px; align-items: center; gap: 14px; font-size: 13px; }
+  .goal-row-label { color: #888; }
+  .goal-bar-track { height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden; }
+  .goal-bar-fill { height: 100%; border-radius: 4px; }
+  .fill-green  { background: #16a34a; }
+  .fill-blue   { background: #2563eb; }
+  .fill-purple { background: #9333ea; }
+  .fill-orange { background: #ff6b35; }
+  .goal-row-value { text-align: right; font-weight: 700; font-size: 14px; }
+  .goal-total-row {
+    margin-top: 4px; padding-top: 14px; border-top: 1px solid #f0f0f0;
+    display: grid; grid-template-columns: 160px 1fr 72px;
+    gap: 14px; font-size: 14px; font-weight: 800; color: #111;
+  }
+  .total-val { text-align: right; color: #ff6b35; font-size: 20px; }
+
+  /* ===== 3 LAYERS ===== */
+  .layers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .layer-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+    padding: 28px 24px; position: relative; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .layer-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+  .l1::before { background: #16a34a; }
+  .l2::before { background: #2563eb; }
+  .l3::before { background: #9333ea; }
+  .layer-tag { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #ccc; margin-bottom: 10px; }
+  .layer-name { font-size: 16px; font-weight: 800; color: #111; margin-bottom: 3px; }
+  .layer-desc { font-size: 11px; color: #aaa; margin-bottom: 20px; line-height: 1.6; }
+  .layer-amount { font-size: 30px; font-weight: 900; letter-spacing: -1px; margin-bottom: 2px; }
+  .l1 .layer-amount { color: #16a34a; }
+  .l2 .layer-amount { color: #2563eb; }
+  .l3 .layer-amount { color: #9333ea; }
+  .layer-amount-note { font-size: 11px; color: #aaa; margin-bottom: 20px; line-height: 1.6; }
+  .layer-items { display: flex; flex-direction: column; gap: 8px; }
+  .layer-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #777; line-height: 1.5; }
+  .layer-item::before { content: '—'; color: #ddd; flex-shrink: 0; }
+
+  /* ===== MEMBER ROADMAP ===== */
+  .member-chart {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 14px; padding: 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .member-phases {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    margin-bottom: 32px; position: relative;
+  }
+  .member-phases::before {
+    content: ''; position: absolute; top: 32px; left: 32px; right: 32px;
+    height: 1px; background: #e5e5e5; z-index: 0;
+  }
+  .member-phase { text-align: center; position: relative; z-index: 1; padding: 0 8px; }
+  .member-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: #fff; border: 2px solid #e5e5e5;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px; font-size: 18px; font-weight: 900; letter-spacing: -1px;
+  }
+  .mc-start { border-color: #e5e5e5; color: #ccc; }
+  .mc-p1 { border-color: #bbf7d0; color: #16a34a; }
+  .mc-p2 { border-color: #bfdbfe; color: #2563eb; }
+  .mc-p3 { border-color: #ffd4c2; color: #ff6b35; background: #fff8f5; }
+  .member-phase-label { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .member-phase-rev { font-size: 12px; font-weight: 700; margin-top: 4px; }
+  .rev-start { color: #ccc; }
+  .rev-p1 { color: #16a34a; }
+  .rev-p2 { color: #2563eb; }
+  .rev-p3 { color: #ff6b35; }
+  .member-basis {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    margin-top: 24px; padding-top: 24px; border-top: 1px solid #f0f0f0;
+  }
+  .member-basis-item { font-size: 12px; color: #777; line-height: 1.7; padding-left: 12px; border-left: 2px solid #e5e5e5; }
+  .member-basis-item strong { color: #333; display: block; margin-bottom: 3px; }
+
+  /* ===== FUNNEL ===== */
+  .funnel-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .funnel-step {
+    background: #fff; border: 1px solid #e8e8e8;
+    border-right: none; padding: 28px 20px; position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .funnel-step:last-child { border-right: 1px solid #e8e8e8; border-radius: 0 12px 12px 0; }
+  .funnel-step:first-child { border-radius: 12px 0 0 12px; }
+  .funnel-arrow {
+    position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 14px solid transparent; border-bottom: 14px solid transparent;
+    border-left: 14px solid #e8e8e8; z-index: 2;
+  }
+  .funnel-arrow::after {
+    content: ''; position: absolute; right: 2px; top: -12px;
+    width: 0; height: 0;
+    border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+    border-left: 12px solid #fff;
+  }
+  .funnel-num { font-size: 40px; font-weight: 900; color: #f0f0f0; line-height: 1; margin-bottom: 8px; }
+  .funnel-tag { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+  .f1 .funnel-tag { color: #ff6b35; }
+  .f2 .funnel-tag { color: #2563eb; }
+  .f3 .funnel-tag { color: #16a34a; }
+  .f4 .funnel-tag { color: #9333ea; }
+  .funnel-title { font-size: 13px; font-weight: 800; color: #111; margin-bottom: 6px; line-height: 1.4; }
+  .funnel-body { font-size: 12px; color: #888; line-height: 1.7; }
+
+  /* ===== MONITOR ===== */
+  .monitor-box {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 14px; padding: 36px;
+    display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: start;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .monitor-left { text-align: center; }
+  .monitor-count { font-size: 72px; font-weight: 900; color: #16a34a; letter-spacing: -4px; line-height: 1; }
+  .monitor-count-label { font-size: 11px; color: #aaa; margin-top: 8px; line-height: 1.6; }
+  .monitor-right { display: flex; flex-direction: column; gap: 16px; }
+  .monitor-step { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; }
+  .monitor-step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #f0fdf4; border: 1px solid #bbf7d0;
+    color: #16a34a; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .monitor-step-body { font-size: 13px; color: #666; line-height: 1.7; }
+  .monitor-step-body strong { color: #111; display: block; margin-bottom: 2px; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .phase-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+    padding: 28px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .phase-tag { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+  .phase-title { font-size: 15px; font-weight: 800; color: #111; margin-bottom: 4px; }
+  .phase-period { font-size: 11px; color: #bbb; margin-bottom: 10px; }
+  .phase-member { font-size: 13px; margin-bottom: 4px; }
+  .ph1 .phase-member { color: #16a34a; }
+  .ph2 .phase-member { color: #2563eb; }
+  .ph3 .phase-member { color: #ff6b35; }
+  .phase-target { font-size: 24px; font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
+  .ph1 .phase-target { color: #aaa; }
+  .ph2 .phase-target { color: #2563eb; }
+  .ph3 .phase-target { color: #ff6b35; }
+  .phase-actions { display: flex; flex-direction: column; gap: 8px; }
+  .phase-action { font-size: 12px; color: #888; padding-left: 12px; border-left: 2px solid; line-height: 1.6; }
+  .ph1 .phase-action { border-left-color: #bbf7d0; }
+  .ph2 .phase-action { border-left-color: #bfdbfe; }
+  .ph3 .phase-action { border-left-color: #ffd4c2; }
+
+  /* ===== DIFF ===== */
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .diff-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .diff-title { font-size: 14px; font-weight: 800; color: #111; margin-bottom: 18px; }
+  .diff-item { display: flex; gap: 12px; font-size: 12px; color: #777; margin-bottom: 12px; line-height: 1.7; align-items: flex-start; }
+  .diff-icon {
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .icon-green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .icon-orange { background: #fff8f5; color: #ff6b35; border: 1px solid #ffd4c2; }
+
+  /* ===== ACTIONS ===== */
+  .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .action-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; padding: 22px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .action-num { font-size: 36px; font-weight: 900; color: #f0f0f0; line-height: 1; margin-bottom: 8px; }
+  .action-title { font-size: 13px; font-weight: 800; color: #111; margin-bottom: 8px; line-height: 1.4; }
+  .action-body { font-size: 11px; color: #888; line-height: 1.7; }
+  .action-tag {
+    display: inline-block; margin-top: 10px; font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 10px; font-weight: 700;
+  }
+  .tag-now { background: #fff8f5; color: #ff6b35; border: 1px solid #ffd4c2; }
+  .tag-week { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .tag-month { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+
+  /* ===== PHILOSOPHY ===== */
+  .philosophy {
+    background: #111; border-radius: 14px;
+    padding: 32px 36px; display: flex; align-items: center; gap: 32px;
+  }
+  .philosophy-quote { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -0.5px; flex: 1; }
+  .philosophy-sub { font-size: 13px; color: #666; flex: 1; line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">Gym Business Strategy Map v3.0 — 競合26施設調査反映済</div>
+    <h1>那須塩原×大田原<br><em>ジム戦略設計図</em></h1>
+    <p class="sub">パーソナルトレーナー業界の歴史と限界を知った上で、<br>りょーま×久保田式マーケから設計した「1人でも月収200〜300万円」の地図</p>
+    <div class="mission-pill">
+      <strong>ミッション：</strong>運動を続けているのに孤独を感じている人の
+      「人とつながりたいのに、うまくできない」という痛みを、
+      運動を入り口にした<strong>「また来たくなる場所」</strong>で解決する。<br>
+      <span style="color:#bbb;font-size:11px;">なぜなら、8年間一人で黙々と通ったあの孤独が、今の確信だから。</span>
+    </div>
+  </div>
+
+  <!-- INDUSTRY HISTORY -->
+  <div class="section">
+    <div class="section-label">Industry Reality — トレーナー業界の過去と現在地</div>
+    <div class="history-intro">
+      <div class="history-intro-title">「ジムを出せば儲かる」は幻想だった。</div>
+      <div class="history-intro-body">
+        パーソナルトレーナー業界は2013年以降、マイクロジム独立ブームで乱立した。<br>
+        しかしほとんどの1人ジムが<strong>同じ天井</strong>にぶつかって疲弊していった。
+        月商70〜90万円という1人の物理的な限界。スタッフを雇えば取り分が激減。
+        育ったスタッフは顧客を連れて独立する——この<strong>「組織崩壊のループ」</strong>が業界の構造的な問題として今も続いている。
+      </div>
+    </div>
+    <div class="history-phases">
+      <div class="phase-box hph1">
+        <div class="phase-box-era">〜2013年</div>
+        <div class="phase-box-title">資格重視時代</div>
+        <div class="phase-box-body">NSCAなど資格を複数持つことが差別化だった時代。フィットネスクラブで月150本のセッションをこなす「スーパーヒーロー」が最強とされた。<strong>パーソナル自体がまだ少なく、資格だけで選ばれた。</strong></div>
+      </div>
+      <div class="phase-box hph2">
+        <div class="phase-box-era">2013年〜</div>
+        <div class="phase-box-title">マイクロジム独立ブーム</div>
+        <div class="phase-box-body">大手で指名客を持つトレーナーがパトロンの出資で独立。初期投資100〜200万円のマイクロジムが乱立。<strong>問題：育ったスタッフが顧客ごと独立→組織崩壊のループが始まる。</strong></div>
+      </div>
+      <div class="phase-box hph3">
+        <div class="phase-box-era">2010年代後半〜</div>
+        <div class="phase-box-title">SNS・個人の時代</div>
+        <div class="phase-box-body">Instagram・YouTube・TikTokで個人が直接集客できる時代へ。ピラティスブームで「無資格でもSNS力で開業」スタイルが乱立。<strong>情報商材（30万円×フォロワー1%）モデルも流行。</strong></div>
+      </div>
+      <div class="phase-box hph4">
+        <div class="phase-box-era">2026年〜現在</div>
+        <div class="phase-box-title">AI時代・淘汰期</div>
+        <div class="phase-box-body">AIの台頭で業界が急速に変化。「触る技術」はAIに代替されにくいのでフィットネスは生き残れる。<strong>ただし箱（小規模ジム）を構えている事業者の淘汰が続いている。</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE LIMIT -->
+  <div class="section">
+    <div class="section-label">The Ceiling — 1人親方の致命的な限界</div>
+    <div class="limit-grid">
+      <div class="limit-card danger">
+        <div class="limit-title red">売上の物理的な天井</div>
+        <div class="limit-calc">
+          単価6,000円 × 1日8本 × 月20日<br>
+          = 月商96万円（理論値）<br>
+          <span class="calc-result">現実のアベレージ：月商70〜90万円</span><br>
+          ━━━━━━━━━━━━━━━━<br>
+          スタッフ給料 20〜30万円<br>
+          家賃・光熱費<br>
+          <span class="calc-result">→ オーナーの取り分が激減</span><br>
+          → 「自分でやった方がマシ」となり組織化できない
+        </div>
+        <div class="limit-items">
+          <div class="limit-item">自分が病気・怪我 → 即売上ゼロ</div>
+          <div class="limit-item">20代は体力で乗り切れても、30〜40代で同じ働き方は不可能</div>
+          <div class="limit-item">疲弊して撤退するジムが後を絶たない</div>
+        </div>
+      </div>
+      <div class="limit-card danger">
+        <div class="limit-title red">組織崩壊のループ（業界共通の構造問題）</div>
+        <div class="limit-calc">
+          スタッフを雇う<br>
+          ↓<br>
+          スタッフが育つ・顧客がつく<br>
+          ↓<br>
+          スタッフが独立・顧客を連れていく<br>
+          ↓<br>
+          また新しいスタッフを雇う<br>
+          <span class="calc-result">↓ この繰り返し ↓</span>
+        </div>
+        <div class="limit-items">
+          <div class="limit-item">「自分で独立するよりこのチームにいた方が得」な設計が必要</div>
+          <div class="limit-item">のれん分け・連携モデルを最初から前提に置く</div>
+          <div class="limit-item">スタッフに50〜60万渡せる構造が組織の安定を生む</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKETING WHY -->
+  <div class="section">
+    <div class="section-label">Strategy Foundation — なぜこの戦略に至ったか</div>
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-source ws-ryoma">りょーまの視点</div>
+        <div class="why-title">稼ぐ設計から逃げるな</div>
+        <div class="why-subtitle">AI時代の営業×trainer-survival の交差点</div>
+
+        <div class="why-point">
+          <div class="why-point-title ws-ryoma-border">「楽しいコミュニティ」は集客の入口にならない</div>
+          <div class="why-point-body">
+            コミュニティを入口にすると「来ない人に来てください」と懇願するSNSになる。
+            <strong>「楽しい場所」は人が来てから初めて意味を持つ。</strong>
+            集客の入口は必ず「機能的ベネフィット（体が変わる）」でなければならない。
+            これを逆にやると——楽しいジムを1人でやる最も疲弊するパターンに向かう。
+          </div>
+          <div class="why-quote">「コミュニティは定着の道具。集客の道具ではない。」</div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-title ws-ryoma-border">1人親方の限界を設計で最初から回避する</div>
+          <div class="why-point-body">
+            月商70〜90万が物理的な上限、という業界のリアルを知った上で設計する。
+            だから<strong>Layer1（BtoB固定）+ Layer2（セミパーソナル1対多）+ Layer3（資産）</strong>の3層構造を最初から入れる。
+            感情で動くのではなく、数字から設計する。
+          </div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-title ws-ryoma-border">月いくら稼ぎたいかを先に決める</div>
+          <div class="why-point-body">
+            目標が月50万なら現場に出続ければいい。
+            目標が月200万なら組織・BtoB・SNSが必要。
+            <strong>目標収入によって取るべき行動が全く変わる。</strong>
+            おっくんが200万を目指すなら、1on1パーソナルだけではたどり着けない——それが前提。
+          </div>
+          <div class="why-quote">「稼げない善意は罪。収益の設計から逃げるな。」</div>
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-source ws-kubota">久保田式マーケの視点</div>
+        <div class="why-title">ターゲットを1人に絞る</div>
+        <div class="why-subtitle">メイカラ式マーケティングの核心</div>
+
+        <div class="why-point">
+          <div class="why-point-title ws-kubota-border">「フィットネスが好きな人」では広すぎる</div>
+          <div class="why-point-body">
+            ターゲットを広くするとメッセージが誰にも刺さらなくなる。
+            <strong>「8年間一人で黙々と通い、孤独を感じ続けた人」</strong>まで絞り込むと、
+            そのメッセージは特定の誰かに「自分のことだ」と刺さる。
+            ターゲットが決まれば、価格・場所・発信内容・競合との差別化が全部決まる。
+          </div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-title ws-kubota-border">「なぜなら」が本物の体験から来ていること</div>
+          <div class="why-point-body">
+            借金500万・任意整理・ハイブランド——全部「よく見られたい」という穴を埋めようとした8年間。
+            その孤独がそのまま「なぜなら」になる。<strong>これは借り物の言葉ではない。</strong>
+            久保田式では「なぜなら」が本物かどうかが、長期的な発信の継続力と信頼の源泉になると説く。
+          </div>
+          <div class="why-quote">「なぜならが実体験なら、それは最強のUSP（独自の売り）になる。」</div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-title ws-kubota-border">入口と定着の設計を分けて考える</div>
+          <div class="why-point-body">
+            <strong>入口：機能的ベネフィット</strong>（3ヶ月で体が変わる・数字で見せる）<br>
+            <strong>定着：情緒的ベネフィット</strong>（ここに来れば誰かいる・つながれる）<br>
+            競合との棲み分けもここから生まれる。
+            SMITHは1on1高単価、LAVAはヨガ・リラクゼーション——おっくんは「結果が出る女性向け月1万円台」で
+            誰とも戦わない独占ポジションを取る。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMPETITIVE MAP -->
+  <div class="section">
+    <div class="section-label">Competitive Map — 26施設の競合地図（女性向け）</div>
+    <div class="comp-map">
+      <div class="axis-top">
+        <span>高単価 / 結果保証あり</span>
+        <span style="color:#ddd;">那須塩原・大田原エリア 26施設調査済</span>
+      </div>
+      <div class="comp-axis">
+        <div class="comp-row">
+          <div class="comp-price">¥24,000〜<br>126,000/月</div>
+          <div class="comp-bar-wrap">
+            <div class="comp-dot" style="background:#ef4444"></div>
+            <div class="comp-name"><strong style="color:#333;">RAIDS / なすしおばらパーソナル / SMITH</strong><br>1on1パーソナル特化。月換算¥24,000〜。SMITHはセッション制で月¥25,000+。</div>
+          </div>
+        </div>
+
+        <div class="comp-row gap-row">
+          <div class="comp-price">¥9,800〜<br>12,800/月</div>
+          <div class="comp-bar-wrap">
+            <div class="comp-dot" style="background:#ff6b35;width:12px;height:12px;box-shadow:0 0 0 3px #ffd4c2"></div>
+            <div class="comp-name">
+              <span style="color:#ff6b35;font-size:10px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:2px;">← おっくんのジム（完全空白地帯）</span>
+              結果が出る女性向けセミパーソナル × コミュニティ。この価格帯・このコンセプトに競合がゼロ。
+            </div>
+            <div class="gap-badge">MARKET GAP</div>
+          </div>
+        </div>
+
+        <div class="comp-row">
+          <div class="comp-price">¥11,800〜<br>16,800/月</div>
+          <div class="comp-bar-wrap">
+            <div class="comp-dot" style="background:#9333ea"></div>
+            <div class="comp-name"><strong style="color:#333;">Rintosull（マシンピラティス） / LAVA（ホットヨガ）</strong><br>女性向けだが「リラクゼーション・姿勢改善」系。体型の数字変化には弱い。</div>
+          </div>
+        </div>
+
+        <div class="comp-row">
+          <div class="comp-price">¥7,700〜<br>12,000/月</div>
+          <div class="comp-bar-wrap">
+            <div class="comp-dot" style="background:#bbb"></div>
+            <div class="comp-name"><strong style="color:#333;">ATC / Pacific / Sunrise / FIND SPORTS（総合クラブ）</strong><br>プール・スタジオ付き。指導なし・結果保証なし。自分次第。</div>
+          </div>
+        </div>
+
+        <div class="comp-row">
+          <div class="comp-price">〜¥8,000/月<br>（推定）</div>
+          <div class="comp-bar-wrap">
+            <div class="comp-dot" style="background:#ddd"></div>
+            <div class="comp-name"><strong style="color:#333;">カーブス大田原美原（女性専用サーキット）</strong><br>女性専用だが50代以上メイン。ゆるい運動。体型変化は期待しにくい層向け。</div>
+          </div>
+        </div>
+
+        <div class="comp-row">
+          <div class="comp-price">¥3,000〜<br>8,000/月</div>
+          <div class="comp-bar-wrap">
+            <div class="comp-dot" style="background:#e5e5e5"></div>
+            <div class="comp-name"><strong style="color:#333;">Anytime Fitness×3店 / WorldPlus / chocoZAP</strong><br>安いが全部自分次第。コーチなし。MAXGYMは2025年5月閉店済。</div>
+          </div>
+        </div>
+      </div>
+      <div class="axis-bottom">低単価 / 自分次第</div>
+    </div>
+  </div>
+
+  <!-- PRICE PLANS -->
+  <div class="section">
+    <div class="section-label">Price Plans — 料金設計</div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-plan-tag">Plan A — Light</div>
+        <div class="price-plan-name">ライトプラン</div>
+        <div class="price-plan-desc">月8回まで利用可。週2回ペースで通える。</div>
+        <div class="price-amount">¥9,800<span>/月</span></div>
+        <div class="price-note">入会金 ¥10,000（初回のみ）</div>
+        <div class="price-items">
+          <div class="price-item">月8回のセミパーソナルグループトレーニング</div>
+          <div class="price-item">セッション予約制</div>
+          <div class="price-item">コミュニティグループ参加</div>
+        </div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">MAIN — 推奨</div>
+        <div class="price-plan-tag">Plan B — Standard</div>
+        <div class="price-plan-name">スタンダードプラン</div>
+        <div class="price-plan-desc">通い放題。来れば来るほど元が取れる。</div>
+        <div class="price-amount" style="color:#ff6b35;">¥12,800<span>/月</span></div>
+        <div class="price-note">入会金 ¥10,000（初回のみ）</div>
+        <div class="price-items">
+          <div class="price-item">通い放題セミパーソナルグループトレーニング</div>
+          <div class="price-item">優先予約枠あり</div>
+          <div class="price-item">月1回ボディチェック・数値管理</div>
+          <div class="price-item">コミュニティグループ参加</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan-tag">計算用 — 加重平均</div>
+        <div class="price-plan-name">平均月会費（想定）</div>
+        <div class="price-plan-desc">Light 4割 / Standard 6割 の比率で試算。</div>
+        <div class="price-amount">¥11,400<span>/月</span></div>
+        <div class="price-note">80人会員時の月収：約 <strong style="color:#2563eb;">91万円</strong></div>
+        <div class="price-items">
+          <div class="price-item">80人 × ¥11,400 = 91.2万円</div>
+          <div class="price-item">BtoB + 1on1 + Layer3 を加算 → 170〜200万円ライン</div>
+          <div class="price-item">Rintosull ¥11,800〜より安く、かつ結果が出る</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOAL -->
+  <div class="section">
+    <div class="section-label">Revenue Target — 月収逆算（80人ベース）</div>
+    <div class="goal-box">
+      <div class="goal-number-block">
+        <div class="goal-big"><sup>月</sup>200<sub>万〜</sub></div>
+        <div style="font-size:48px;font-weight:900;color:#ff6b35;letter-spacing:-3px;line-height:1.1;margin-top:-4px;">300<sub style="font-size:18px;font-weight:400;color:#bbb;letter-spacing:0;">万円</sub></div>
+        <div class="goal-label">SOLO TARGET</div>
+      </div>
+      <div class="goal-breakdown">
+        <div class="goal-row">
+          <div class="goal-row-label">Layer 1 BtoB固定</div>
+          <div class="goal-bar-track"><div class="goal-bar-fill fill-green" style="width:15%"></div></div>
+          <div class="goal-row-value" style="color:#16a34a">30万</div>
+        </div>
+        <div class="goal-row">
+          <div class="goal-row-label">セミパーソナル</div>
+          <div class="goal-bar-track"><div class="goal-bar-fill fill-blue" style="width:46%"></div></div>
+          <div class="goal-row-value" style="color:#2563eb">91万</div>
+        </div>
+        <div class="goal-row">
+          <div class="goal-row-label">1on1パーソナル</div>
+          <div class="goal-bar-track"><div class="goal-bar-fill fill-orange" style="width:17%"></div></div>
+          <div class="goal-row-value" style="color:#ff6b35">34万</div>
+        </div>
+        <div class="goal-row">
+          <div class="goal-row-label">Layer 3 資産収益</div>
+          <div class="goal-bar-track"><div class="goal-bar-fill fill-purple" style="width:11%"></div></div>
+          <div class="goal-row-value" style="color:#9333ea">21万</div>
+        </div>
+        <div class="goal-total-row">
+          <div>月収合計（80人達成時）</div>
+          <div style="border-top:1px solid #f0f0f0;margin-top:3px;"></div>
+          <div class="total-val">176万</div>
+        </div>
+        <div style="font-size:12px;color:#888;line-height:1.8;margin-top:8px;padding:14px 16px;background:#f9f9f9;border-radius:8px;border:1px solid #f0f0f0;">
+          <span style="color:#2563eb;font-weight:700;">80人 → 176万円</span>（現実的な安定期の数字）<br>
+          <span style="color:#ff6b35;font-weight:700;">100人 → 200万円超</span>（BtoB10社 + セミパーソナル100人で到達）<br>
+          <span style="color:#aaa;">300万ライン：スタッフ1名 + 120人 + BtoB10社でフル稼働</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 LAYERS -->
+  <div class="section">
+    <div class="section-label">3-Layer Revenue Model — 収益の積み上げ構造</div>
+    <div class="layers-grid">
+      <div class="layer-card l1">
+        <div class="layer-tag">Layer 01 — Fixed</div>
+        <div class="layer-name">BtoB固定収益</div>
+        <div class="layer-desc">稼ぐ前に守る。病気・怪我でも崩れない安全網。</div>
+        <div class="layer-amount">月30万</div>
+        <div class="layer-amount-note">企業6社 × 月5万円<br>まず実家の建設会社から始める</div>
+        <div class="layer-items">
+          <div class="layer-item">建設会社グループ社員の福利厚生契約</div>
+          <div class="layer-item">社員10人 × 月5,000円 = 5万円/社</div>
+          <div class="layer-item">「うちの会社が入れた」= 地域信頼証明</div>
+          <div class="layer-item">異業種進出補助金の対象になる</div>
+        </div>
+      </div>
+      <div class="layer-card l2">
+        <div class="layer-tag">Layer 02 — Variable</div>
+        <div class="layer-name">セミパーソナル</div>
+        <div class="layer-desc">稼働を増やさずスケールする。1人の天井を壊す。</div>
+        <div class="layer-amount">月91万</div>
+        <div class="layer-amount-note">平均¥11,400 × 80人<br>（ライト¥9,800 / スタンダード¥12,800）</div>
+        <div class="layer-items">
+          <div class="layer-item">1on1は月96万が物理的上限（業界の構造問題）</div>
+          <div class="layer-item">セミパーソナルは人数が増えても時間は変わらない</div>
+          <div class="layer-item">栃木初のHYROX型グループトレーニング → 独占</div>
+          <div class="layer-item">Rintosull ¥11,800〜より安くて「体が変わる」</div>
+        </div>
+      </div>
+      <div class="layer-card l3">
+        <div class="layer-tag">Layer 03 — Asset</div>
+        <div class="layer-name">資産収益</div>
+        <div class="layer-desc">自分が動かなくても入る仕組みを育てる。</div>
+        <div class="layer-amount">月21万</div>
+        <div class="layer-amount-note">3ソースの分散収益<br>時間の切り売りをしない構造</div>
+        <div class="layer-items">
+          <div class="layer-item">空間の時間貸し：朝6〜8時をヨガ講師に → 月5万</div>
+          <div class="layer-item">コミュニティ会費：月2千 × 50人 = 月10万</div>
+          <div class="layer-item">物販（サプリ・プロテイン）利益率30〜40% → 月6万</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMBER ROADMAP -->
+  <div class="section">
+    <div class="section-label">Member Roadmap — 会員数の現実的ロードマップ</div>
+    <div class="member-chart">
+      <div class="member-phases">
+        <div class="member-phase">
+          <div class="member-circle mc-start">0</div>
+          <div class="member-phase-label">開業時<br>（モニター後）</div>
+          <div class="member-phase-rev rev-start">—</div>
+        </div>
+        <div class="member-phase">
+          <div class="member-circle mc-p1">35</div>
+          <div class="member-phase-label">Phase 1<br>開業〜6ヶ月</div>
+          <div class="member-phase-rev rev-p1">月70〜90万</div>
+        </div>
+        <div class="member-phase">
+          <div class="member-circle mc-p2">70</div>
+          <div class="member-phase-label">Phase 2<br>6〜18ヶ月</div>
+          <div class="member-phase-rev rev-p2">月130〜160万</div>
+        </div>
+        <div class="member-phase">
+          <div class="member-circle mc-p3">100</div>
+          <div class="member-phase-label">Phase 3<br>18ヶ月以降</div>
+          <div class="member-phase-rev rev-p3">月200万超</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#777;line-height:1.8;padding:14px 16px;background:#f9f9f9;border-radius:8px;border:1px solid #f0f0f0;">
+        <span style="color:#333;font-weight:700;">この数字が現実的な根拠：</span>
+        「結果が出る女性向け月1万円台」は地域26施設中ゼロの独占ポジション。
+        月5人の新規獲得 × 退会率3〜5% で80〜100人を維持できる計算。
+        MAXGYMが2025年5月閉店 → 元会員の受け皿需要が存在。
+      </div>
+      <div class="member-basis">
+        <div class="member-basis-item">
+          <strong>商圏の女性ターゲット層</strong>
+          那須塩原+大田原 女性20〜50代 約3.5万人<br>
+          月9,800円を払える層 約560〜840人<br>
+          1ジムシェア15〜20% = <strong style="color:#555;">84〜168人が天井</strong>
+        </div>
+        <div class="member-basis-item">
+          <strong>月間退会率と必要新規数</strong>
+          退会率3%（優秀）: 月3人で100人維持<br>
+          退会率5%（平均）: 月5人で100人維持<br>
+          <strong style="color:#555;">「月5人の紹介」が現実的な目標</strong>
+        </div>
+        <div class="member-basis-item">
+          <strong>物理的な収容上限</strong>
+          150平米 × 1セッション8人 × 1日5枠 = 40人/日<br>
+          週3回来る会員 = 最大120〜140人収容可<br>
+          <strong style="color:#555;">施設容量は問題なし</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNNEL -->
+  <div class="section">
+    <div class="section-label">Acquisition Funnel — 集客の4段階</div>
+    <div class="funnel-wrap">
+      <div class="funnel-step f1">
+        <div class="funnel-num">01</div>
+        <div class="funnel-tag">Attract — 入口</div>
+        <div class="funnel-title">機能的ベネフィットで人を集める</div>
+        <div class="funnel-body">「3ヶ月で体が変わる」が入口。「楽しいコミュニティ」は人が来てから意味を持つ。まずビフォーアフター写真で結果を売る。</div>
+        <div class="funnel-arrow"></div>
+      </div>
+      <div class="funnel-step f2">
+        <div class="funnel-num">02</div>
+        <div class="funnel-tag">Convert — 体験</div>
+        <div class="funnel-title">セミパーソナルで結果を出す</div>
+        <div class="funnel-body">体重・体脂肪・写真の数字で変化を見せる。信頼が生まれると「ここしかない」になる。</div>
+        <div class="funnel-arrow"></div>
+      </div>
+      <div class="funnel-step f3">
+        <div class="funnel-num">03</div>
+        <div class="funnel-tag">Retain — 継続</div>
+        <div class="funnel-title">コミュニティで「好き」に変える</div>
+        <div class="funnel-body">「結果が出た」→「ここが好き」に変わると解約しなくなる。女性はコミュニティ定着率が高い。LTVが最大化。</div>
+        <div class="funnel-arrow"></div>
+      </div>
+      <div class="funnel-step f4">
+        <div class="funnel-num">04</div>
+        <div class="funnel-tag">Refer — 紹介</div>
+        <div class="funnel-title">友人を連れてくる広告費ゼロ</div>
+        <div class="funnel-body">女性の口コミネットワークは強力。「ここに来れば誰かいる」の感覚が自然な紹介になる。月5人の紹介で100人を維持できる。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONITOR -->
+  <div class="section">
+    <div class="section-label">Pre-Opening — モニター戦略（証拠製造期間）</div>
+    <div class="monitor-box">
+      <div class="monitor-left">
+        <div class="monitor-count">5〜8</div>
+        <div style="font-size:18px;color:#16a34a;font-weight:700;margin-top:4px;">枚</div>
+        <div class="monitor-count-label">開業時に揃える<br>ビフォーアフター写真数</div>
+        <div style="margin-top:20px;font-size:12px;color:#bbb;line-height:1.7;">
+          現在1枚（女性クライアント）<br>あと4〜7枚が必要
+        </div>
+      </div>
+      <div class="monitor-right">
+        <div class="monitor-step">
+          <div class="monitor-step-num">1</div>
+          <div class="monitor-step-body">
+            <strong>今週：既存の1枚をSNS投稿する</strong>
+            担当した女性クライアントの3ヶ月の変化を投稿。「ジム作ります」の予告も入れる。ターゲット女性層に直接刺さる写真。
+          </div>
+        </div>
+        <div class="monitor-step">
+          <div class="monitor-step-num">2</div>
+          <div class="monitor-step-body">
+            <strong>今月：マッスル委員会から女性モニター3〜5名を募集</strong>
+            「来年ジム作るので格安で試してもらいたい人いませんか」と直接声かけ。月¥3,000〜5,000 + 写真掲載許可が条件。
+          </div>
+        </div>
+        <div class="monitor-step">
+          <div class="monitor-step-num">3</div>
+          <div class="monitor-step-body">
+            <strong>3ヶ月間：週2回のセミパーソナルを実施</strong>
+            体重・体脂肪・写真で変化を記録。数字で変化を見せることが信頼になる。
+          </div>
+        </div>
+        <div class="monitor-step">
+          <div class="monitor-step-num">4</div>
+          <div class="monitor-step-body">
+            <strong>開業時：写真5〜8枚 + 証言5件が揃った状態</strong>
+            これがあればRintosull・カーブスとの差別化が一目でわかる。「体が変わる場所」を証明できる。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section">
+    <div class="section-label">Roadmap — フェーズ別アクション</div>
+    <div class="timeline">
+      <div class="phase-card ph1">
+        <div class="phase-tag">Phase 01</div>
+        <div class="phase-title">土台を固める</div>
+        <div class="phase-period">開業〜6ヶ月</div>
+        <div class="phase-member">会員数目標：20〜35人</div>
+        <div class="phase-target">月70〜90万円</div>
+        <div class="phase-actions">
+          <div class="phase-action">建設会社社員向け体験会 → BtoB第1号（月5万固定）</div>
+          <div class="phase-action">モニター修了者が口コミ第1弾になる</div>
+          <div class="phase-action">Googleマップ口コミ50件先行取得 → 地域1位</div>
+          <div class="phase-action">MAXGYM元会員にアプローチ</div>
+        </div>
+      </div>
+      <div class="phase-card ph2">
+        <div class="phase-tag">Phase 02</div>
+        <div class="phase-title">セミパーソナル拡大</div>
+        <div class="phase-period">6〜18ヶ月</div>
+        <div class="phase-member">会員数目標：50〜70人</div>
+        <div class="phase-target">月130〜160万円</div>
+        <div class="phase-actions">
+          <div class="phase-action">BtoB企業3社→6社へ拡大</div>
+          <div class="phase-action">空間時間貸しスタート（地域のヨガ講師に）</div>
+          <div class="phase-action">コミュニティ有料化 月2千円 × 50人</div>
+          <div class="phase-action">SNSフォロワーが増え→広告費ゼロ集客へ</div>
+        </div>
+      </div>
+      <div class="phase-card ph3">
+        <div class="phase-tag">Phase 03</div>
+        <div class="phase-title">3層フル稼働</div>
+        <div class="phase-period">18ヶ月以降</div>
+        <div class="phase-member">会員数目標：80〜100人</div>
+        <div class="phase-target">月200万円超</div>
+        <div class="phase-actions">
+          <div class="phase-action">100人でスタッフ1名（のれん分け前提で設計）</div>
+          <div class="phase-action">BtoB企業8〜10社 × 月5万円</div>
+          <div class="phase-action">SNSフォロワー資産化→オンライン展開判断</div>
+          <div class="phase-action">300万ラインはスタッフ1名追加で視野に入る</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIFFERENTIATION -->
+  <div class="section">
+    <div class="section-label">Local Advantage — 那須塩原・大田原の有利性</div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-title">競合不在の独占ポジション</div>
+        <div class="diff-item">
+          <div class="diff-icon icon-green">✓</div>
+          <div>栃木県にクロスフィットジムすらない。HYRO型グループトレーニングは完全空白地帯。</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon icon-green">✓</div>
+          <div>「結果が出る女性向け月1万円台」のジムが26施設中ゼロ。今入れば独占。</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon icon-green">✓</div>
+          <div>MEO競合の口コミが全て50件以下。50件作れば地域1位確定。最安の集客施策。</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon icon-green">✓</div>
+          <div>MAXGYMが2025年5月閉店。元会員の受け皿需要あり。開業時の先行獲得チャンス。</div>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-title">設備・資金面の有利条件</div>
+        <div class="diff-item">
+          <div class="diff-icon icon-orange">✓</div>
+          <div>実家所有の1F150平米×3F建て。家賃ゼロでスタート可能。初期コスト圧倒的優位。</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon icon-orange">✓</div>
+          <div>那須塩原市下永田×大田原市境界立地。両市の人口を同時にカバーできる好ポジション。</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon icon-orange">✓</div>
+          <div>建設会社グループとの連携 → 異業種進出補助金の対象。内装コストも削減可能。</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon icon-orange">✓</div>
+          <div>昼シニア女性クラス + 夜20〜40代女性クラスで空間を二重活用。稼働率最大化。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="section">
+    <div class="section-label">Next Actions — 今すぐやること</div>
+    <div class="actions-grid">
+      <div class="action-card">
+        <div class="action-num">01</div>
+        <div class="action-title">女性クライアントのビフォーアフター写真をSNS投稿</div>
+        <div class="action-body">1枚ある写真を今週中に出す。「ジム作ります」の予告も入れる。最初の証拠の発信。</div>
+        <div class="action-tag tag-now">今週</div>
+      </div>
+      <div class="action-card">
+        <div class="action-num">02</div>
+        <div class="action-title">Googleマップにビジネスプロフィール登録</div>
+        <div class="action-body">今日できる最安の集客施策。競合が弱いうちに口コミ50件を先行取得する。</div>
+        <div class="action-tag tag-now">今日</div>
+      </div>
+      <div class="action-card">
+        <div class="action-num">03</div>
+        <div class="action-title">マッスル委員会から女性モニター3〜5名を募集</div>
+        <div class="action-body">格安でトレーニング＋写真掲載OKな人を直接声かけ。3ヶ月でビフォーアフターを揃える。</div>
+        <div class="action-tag tag-week">今月</div>
+      </div>
+      <div class="action-card">
+        <div class="action-num">04</div>
+        <div class="action-title">建設会社の社員向け体験会を開く</div>
+        <div class="action-body">BtoB第1号の実績を作る。「うちの会社が入れた」が地域への信頼証明になる。</div>
+        <div class="action-tag tag-month">今月</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <div class="philosophy">
+    <div class="philosophy-quote">「稼げない善意は罪」</div>
+    <div class="philosophy-sub">
+      コミュニティを楽しくするだけでは人を守れない。<br>
+      収益の設計から逃げるな。<br>
+      <span style="color:#444;">80人で176万円。100人で200万円超。数字は証明できる。</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

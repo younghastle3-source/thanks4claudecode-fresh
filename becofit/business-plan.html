@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be Co Fitness 事業計画書 v2.0（地獄シナリオ改訂版）</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --accent: #e8ff00;
+    --accent2: #ff4444;
+    --accent3: #44ff88;
+    --text: #f0f0f0;
+    --muted: #888;
+    --orange: #ff8c00;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(10,10,10,0.95);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    overflow-x: auto;
+  }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: color .2s;
+  }
+  nav a:hover { color: var(--accent); }
+  .nav-logo {
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--accent);
+    margin-right: 16px;
+    white-space: nowrap;
+  }
+
+  /* SECTIONS */
+  section {
+    min-height: 100vh;
+    padding: 96px 48px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  h1 { font-size: clamp(36px, 6vw, 80px); font-weight: 900; line-height: 1.0; }
+  h2 { font-size: clamp(28px, 4vw, 52px); font-weight: 900; line-height: 1.1; margin-bottom: 40px; }
+  h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+
+  /* HERO */
+  #hero {
+    background: radial-gradient(ellipse at 60% 50%, #1a1f00 0%, #0a0a0a 60%);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: 'BC';
+    position: absolute;
+    right: -40px; top: 50%; transform: translateY(-50%);
+    font-size: 400px;
+    font-weight: 900;
+    color: rgba(232,255,0,0.04);
+    letter-spacing: -40px;
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--muted);
+    margin-top: 24px;
+    max-width: 600px;
+  }
+  .version-badge {
+    margin-top: 48px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .badge span { color: var(--accent); font-weight: 700; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-danger { border-left: 3px solid var(--accent2); }
+  .card-safe { border-left: 3px solid var(--accent3); }
+  .card-warn { border-left: 3px solid var(--orange); }
+
+  /* BIG NUMBER */
+  .big-num {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1;
+  }
+  .big-num.accent { color: var(--accent); }
+  .big-num.danger { color: var(--accent2); }
+  .big-num.safe { color: var(--accent3); }
+  .big-num.orange { color: var(--orange); }
+  .num-label { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    background: var(--border);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  td { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  .positive { color: var(--accent3); font-weight: 700; }
+  .negative { color: var(--accent2); font-weight: 700; }
+  .neutral { color: var(--orange); font-weight: 700; }
+  .highlight-row td { background: rgba(232,255,0,0.05); }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .tag-red { background: rgba(255,68,68,0.2); color: var(--accent2); }
+  .tag-green { background: rgba(68,255,136,0.2); color: var(--accent3); }
+  .tag-yellow { background: rgba(232,255,0,0.2); color: var(--accent); }
+  .tag-orange { background: rgba(255,140,0,0.2); color: var(--orange); }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: rgba(232,255,0,0.08);
+    border: 1px solid rgba(232,255,0,0.3);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .alert {
+    background: rgba(255,68,68,0.08);
+    border: 1px solid rgba(255,68,68,0.3);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--accent);
+    margin: 16px 0 32px;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap { margin: 8px 0; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 0;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 1s ease;
+  }
+
+  /* PHASE */
+  .phase-block {
+    display: flex;
+    gap: 0;
+  }
+  .phase-item {
+    flex: 1;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-right: none;
+    position: relative;
+  }
+  .phase-item:last-child { border-right: 1px solid var(--border); }
+  .phase-num {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .phase-title { font-weight: 700; margin-bottom: 12px; }
+  .phase-arrow {
+    position: absolute;
+    right: -14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 20px;
+    z-index: 2;
+    background: var(--black);
+    padding: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 80px 24px 48px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .phase-block { flex-direction: column; }
+    .phase-item { border-right: 1px solid var(--border); border-bottom: none; }
+    .phase-item:last-child { border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Be Co</span>
+  <a href="#hero">概要</a>
+  <a href="#discovery">発見</a>
+  <a href="#market">市場分析</a>
+  <a href="#model">収益モデル</a>
+  <a href="#pnl">損益シミュレーション</a>
+  <a href="#phases">フェーズ計画</a>
+  <a href="#strategy">戦略修正</a>
+  <a href="#actions">アクション</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">事業計画書 v2.0 — 地獄シナリオ改訂版</div>
+  <h1>Be Co<br>Fitness</h1>
+  <p class="hero-sub">栃木県那須塩原市｜24hジム＋パーソナル＋コミュニティ<br>Fit Placeヒアリングデータ（2026.3.22）反映版</p>
+  <div class="version-badge">
+    <div class="badge">更新日 <span>2026.3.22</span></div>
+    <div class="badge">場所 <span>那須塩原市下永田</span></div>
+    <div class="badge">フェーズ <span>構想→設計段階</span></div>
+    <div class="badge">土地 <span>自社所有（家賃ゼロ）</span></div>
+  </div>
+</section>
+
+<!-- DISCOVERY -->
+<section id="discovery">
+  <div class="section-label">Section 01 — 最大の発見</div>
+  <h2>前提が崩れた。<br>計画を作り直す。</h2>
+
+  <div class="alert">
+    <h3 style="color:var(--accent2); margin-bottom:12px;">⚠️ Fit Placeの実数データが全てを変えた</h3>
+    <p style="font-size:18px; line-height:1.8;">宇都宮店 <strong>1,700人</strong> の会員のうち、パーソナルトレーニングを利用しているのは <strong style="color:var(--accent2); font-size:28px;">わずか20人（1.2%）</strong><br>
+    「パーソナルが売れる」という前提は幻想だった。</p>
+  </div>
+
+  <div class="grid-3" style="margin-top:32px;">
+    <div class="card card-danger">
+      <div class="num-label">旧BEP（Q57地獄シナリオ）</div>
+      <div class="big-num danger">150<span style="font-size:28px">名</span></div>
+      <p style="font-size:13px; color:var(--muted); margin-top:12px;">PT利用率を楽観的に見積もっていた</p>
+    </div>
+    <div class="card card-danger">
+      <div class="num-label">改訂後BEP（¥4,980設定の場合）</div>
+      <div class="big-num danger">243<span style="font-size:28px">名</span></div>
+      <p style="font-size:13px; color:var(--muted); margin-top:12px;">1.2%PT利用率で正確に計算</p>
+    </div>
+    <div class="card card-safe">
+      <div class="num-label">改訂後BEP（¥6,980設定の場合）</div>
+      <div class="big-num safe">177<span style="font-size:28px">名</span></div>
+      <p style="font-size:13px; color:var(--muted); margin-top:12px;">価格設定でBEPを66名削減できる</p>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:32px;">
+    <p style="font-size:16px;"><strong style="color:var(--accent);">結論：</strong>Be Co Fitnessは「パーソナルジム」ではなく「<strong>コミュニティジム</strong>」として設計せよ。PTは収益の柱でなく、<strong>体験価値の柱</strong>として位置付ける。</p>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="section-label">Section 02 — 市場分析</div>
+  <h2>競合と市場の<br>リアル</h2>
+
+  <div class="grid-2" style="margin-bottom:32px;">
+    <div>
+      <h3>那須塩原エリアの競合</h3>
+      <div class="divider"></div>
+      <table>
+        <thead><tr><th>ジム名</th><th>タイプ</th><th>評価</th></tr></thead>
+        <tbody>
+          <tr><td>エニタイムF 西那須野</td><td>24h</td><td><span class="tag tag-orange">混雑・狭い</span></td></tr>
+          <tr><td>エニタイムF 黒磯</td><td>24h</td><td><span class="tag tag-orange">混雑・狭い</span></td></tr>
+          <tr><td>ワールドプラスジム</td><td>24h</td><td><span class="tag tag-orange">MEO弱い</span></td></tr>
+          <tr><td>AT-SHOP</td><td>パーソナル</td><td><span class="tag tag-green">高評価</span></td></tr>
+          <tr><td>RAIDS Personal Gym</td><td>パーソナル</td><td><span class="tag tag-green">評価5.0</span></td></tr>
+          <tr><td>パーソナルジムSMITH</td><td>パーソナル</td><td><span class="tag tag-green">大田原人気No.1</span></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight" style="margin-top:16px; padding:16px 20px;">
+        <p style="font-size:13px;"><strong style="color:var(--accent);">共通の弱点：</strong>全競合でMEO対策がほぼ未実施。ここが最大の勝ち目。</p>
+      </div>
+    </div>
+    <div>
+      <h3>Fit Place 24 から学ぶ（ヒアリング実数）</h3>
+      <div class="divider"></div>
+      <div class="card" style="margin-bottom:16px;">
+        <div style="font-size:12px; color:var(--muted);">宇都宮店 総会員数</div>
+        <div class="big-num accent" style="font-size:52px;">1,700<span style="font-size:24px">人</span></div>
+      </div>
+      <div class="grid-2" style="gap:12px;">
+        <div class="card card-danger">
+          <div style="font-size:12px; color:var(--muted);">PT利用者数</div>
+          <div class="big-num danger" style="font-size:40px;">20<span style="font-size:18px">人</span></div>
+          <div style="font-size:12px; color:var(--muted); margin-top:4px;">全体の1.2%</div>
+        </div>
+        <div class="card">
+          <div style="font-size:12px; color:var(--muted);">PT非利用者</div>
+          <div class="big-num" style="font-size:40px;">98.8<span style="font-size:18px">%</span></div>
+          <div style="font-size:12px; color:var(--muted); margin-top:4px;">ジムのみ利用</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <h3 style="font-size:14px; margin-bottom:8px;">Fit Placeのヤドカリ戦略</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7;">イオン等の大型商業施設に隣接してテナント入店。集客コストを施設の人流に依存する。<br>
+        <strong style="color:var(--text);">FC展開あり。ゼロから建てると億単位の初期投資。</strong><br>
+        <span style="color:var(--accent);">→ Be Coは逆の戦略で差別化できる</span></p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Be Co Fitness の唯一無二の強み</h3>
+  <div class="grid-4" style="margin-top:16px;">
+    <div class="card card-accent">
+      <div style="font-size:28px; margin-bottom:8px;">🏗️</div>
+      <h3 style="font-size:15px;">家賃ゼロ</h3>
+      <p style="font-size:13px; color:var(--muted);">自社土地・自社建物。月次固定費が競合比で圧倒的に低い</p>
+    </div>
+    <div class="card card-accent">
+      <div style="font-size:28px; margin-bottom:8px;">🏢</div>
+      <h3 style="font-size:15px;">施工原価</h3>
+      <p style="font-size:13px; color:var(--muted);">北関東環境開発グループ。内装工事コストを原価で実施できる</p>
+    </div>
+    <div class="card card-accent">
+      <div style="font-size:28px; margin-bottom:8px;">🏋️</div>
+      <h3 style="font-size:15px;">広い施設</h3>
+      <p style="font-size:13px; color:var(--muted);">延床539㎡。競合が全員「狭い」と言われている中での圧倒的優位</p>
+    </div>
+    <div class="card card-accent">
+      <div style="font-size:28px; margin-bottom:8px;">🤝</div>
+      <h3 style="font-size:15px;">コミュニティ</h3>
+      <p style="font-size:13px; color:var(--muted);">スターバックス型サードプレイス。機能ではなく「場所」で勝負</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL -->
+<section id="model">
+  <div class="section-label">Section 03 — 収益モデル</div>
+  <h2>数字で見る<br>収益構造</h2>
+
+  <div class="grid-2">
+    <div>
+      <h3>価格設定オプション比較</h3>
+      <div class="divider"></div>
+      <table>
+        <thead><tr><th>プラン</th><th>月額</th><th>備考</th></tr></thead>
+        <tbody>
+          <tr><td>24hジムのみ（案A：低価格）</td><td>¥4,980</td><td>Fit Placeと同水準</td></tr>
+          <tr class="highlight-row"><td><strong>24hジムのみ（案B：推奨）</strong></td><td><strong>¥6,980</strong></td><td><span class="tag tag-yellow">BEP改善</span></td></tr>
+          <tr><td>パーソナル4回セット</td><td>¥35,000</td><td>ジム利用込み</td></tr>
+          <tr><td>パーソナル8回セット</td><td>¥65,000</td><td>ジム利用込み</td></tr>
+          <tr><td>単発 60分</td><td>¥9,000</td><td>都度払い</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight" style="margin-top:20px;">
+        <p style="font-size:14px; line-height:1.8;"><strong style="color:var(--accent);">¥6,980の根拠：</strong><br>
+        エリア最安値クラスを維持しながらBEPを<strong>243名→177名</strong>に削減。家賃ゼロの強みを活かせる価格帯。Fit Placeの¥4,980と比較しても+¥2,000の差は「広い・混まない・コミュニティあり」で十分正当化できる。</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>1会員あたり月次収益の計算</h3>
+      <div class="divider"></div>
+
+      <div class="card" style="margin-bottom:16px; padding:20px;">
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">PT利用率 1.2%（Fit Place実数）を適用</p>
+        <div style="background:var(--black); padding:20px; font-family:monospace; font-size:13px; line-height:2; border:1px solid var(--border);">
+          <div style="color:var(--muted);">【案A ¥4,980設定】</div>
+          ジムのみ(98.8%) × 4,980 = ¥4,921<br>
+          PT客(1.2%)       × 35,000 = ¥&nbsp;&nbsp;420<br>
+          <div style="border-top:1px solid var(--border); margin-top:8px; padding-top:8px; color:var(--accent2);">平均単価 = <strong>¥5,341 / 月</strong></div>
+          <div style="margin-top:16px; color:var(--muted);">【案B ¥6,980設定】</div>
+          ジムのみ(98.8%) × 6,980 = ¥6,897<br>
+          PT客(1.2%)       × 38,000 = ¥&nbsp;&nbsp;456<br>
+          <div style="border-top:1px solid var(--border); margin-top:8px; padding-top:8px; color:var(--accent3);">平均単価 = <strong>¥7,353 / 月</strong></div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="gap:12px;">
+        <div class="card card-danger">
+          <div style="font-size:12px; color:var(--muted);">BEP（¥4,980案）</div>
+          <div class="big-num danger">243<span style="font-size:20px">名</span></div>
+          <div style="font-size:12px; color:var(--muted); margin-top:4px;">1,300,000 ÷ 5,341</div>
+        </div>
+        <div class="card card-safe">
+          <div style="font-size:12px; color:var(--muted);">BEP（¥6,980案）</div>
+          <div class="big-num safe">177<span style="font-size:20px">名</span></div>
+          <div style="font-size:12px; color:var(--muted); margin-top:4px;">1,300,000 ÷ 7,353</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:48px;">月次固定費の内訳</h3>
+  <div class="grid-4" style="margin-top:16px;">
+    <div class="card">
+      <div style="font-size:12px; color:var(--muted);">人件費</div>
+      <div class="big-num orange" style="font-size:40px;">80<span style="font-size:18px">万</span></div>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px;">トレーナー2名体制（Q57据え置き）<br>※スリム化で削減余地あり</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px; color:var(--muted);">光熱費（24h電気）</div>
+      <div class="big-num" style="font-size:40px;">20<span style="font-size:18px">万</span></div>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px;">24時間稼働の現実コスト</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px; color:var(--muted);">保険・維持・マーケ</div>
+      <div class="big-num" style="font-size:40px;">20<span style="font-size:18px">万</span></div>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px;">MEO広告・機器保守・保険</p>
+    </div>
+    <div class="card card-accent">
+      <div style="font-size:12px; color:var(--muted);">固定費合計</div>
+      <div class="big-num accent" style="font-size:40px;">130<span style="font-size:18px">万</span></div>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px;"><strong style="color:var(--accent);">家賃ゼロで競合比-40〜60万</strong>の優位性</p>
+    </div>
+  </div>
+</section>
+
+<!-- P&L -->
+<section id="pnl">
+  <div class="section-label">Section 04 — 損益シミュレーション</div>
+  <h2>現実の数字と<br>向き合う</h2>
+
+  <div class="alert">
+    <p style="font-size:14px;"><strong style="color:var(--accent2);">地獄シナリオ前提：</strong>楽観的な数値は一切使わない。全て最悪ケースで計算する。</p>
+  </div>
+
+  <h3 style="margin-top:32px;">月次損益シミュレーション（¥6,980設定推奨案）</h3>
+  <table style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th>フェーズ</th>
+        <th>期間目安</th>
+        <th>会員数</th>
+        <th>月次収益</th>
+        <th>固定費</th>
+        <th>月次損益</th>
+        <th>状態</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Phase 1 開業期</td>
+        <td>〜3ヶ月</td>
+        <td>100名</td>
+        <td>¥735,300</td>
+        <td>¥1,300,000</td>
+        <td class="negative">▲¥564,700</td>
+        <td><span class="tag tag-red">赤字継続</span></td>
+      </tr>
+      <tr>
+        <td>Phase 2 成長期</td>
+        <td>〜6ヶ月</td>
+        <td>150名</td>
+        <td>¥1,102,950</td>
+        <td>¥1,300,000</td>
+        <td class="negative">▲¥197,050</td>
+        <td><span class="tag tag-red">赤字縮小</span></td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>BEP 損益分岐</strong></td>
+        <td>〜9ヶ月</td>
+        <td><strong>177名</strong></td>
+        <td>¥1,301,481</td>
+        <td>¥1,300,000</td>
+        <td class="neutral">±¥0</td>
+        <td><span class="tag tag-orange">分岐点</span></td>
+      </tr>
+      <tr>
+        <td>Phase 3 安定期</td>
+        <td>12ヶ月</td>
+        <td>250名</td>
+        <td>¥1,838,250</td>
+        <td>¥1,300,000</td>
+        <td class="positive">+¥538,250</td>
+        <td><span class="tag tag-green">黒字化</span></td>
+      </tr>
+      <tr>
+        <td>Phase 4 目標</td>
+        <td>18ヶ月</td>
+        <td>350名</td>
+        <td>¥2,573,550</td>
+        <td>¥1,300,000</td>
+        <td class="positive">+¥1,273,550</td>
+        <td><span class="tag tag-green">利益率49%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid-2" style="margin-top:32px; gap:24px;">
+    <div>
+      <h3>BEPまでの必要運転資金</h3>
+      <div class="divider"></div>
+      <div style="background:var(--black); padding:20px; font-family:monospace; font-size:13px; line-height:2.2; border:1px solid var(--border);">
+        Phase 1（3ヶ月）: ▲564,700 × 3 = <span style="color:var(--accent2);">▲1,694,100</span><br>
+        Phase 2（3ヶ月）: ▲197,050 × 3 = <span style="color:var(--accent2);">▲591,150</span><br>
+        Phase 3（3ヶ月）: 改善中    × 3 = <span style="color:var(--orange);">▲300,000（概算）</span><br>
+        <div style="border-top:1px solid var(--border); margin-top:8px; padding-top:8px;">
+        合計必要運転資金：<span style="color:var(--accent); font-size:20px; font-weight:700;">約¥2,585,250</span><br>
+        <span style="color:var(--muted); font-size:11px;">+ 初期設備投資（別途）</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>撤退ライン（改訂版）</h3>
+      <div class="divider"></div>
+      <table>
+        <thead><tr><th>タイミング</th><th>判断基準</th><th>アクション</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>3ヶ月時点</td>
+            <td class="negative">100名未達</td>
+            <td>即撤退検討</td>
+          </tr>
+          <tr>
+            <td>6ヶ月時点</td>
+            <td class="negative">150名未達</td>
+            <td>戦略見直し必須</td>
+          </tr>
+          <tr>
+            <td>9ヶ月時点</td>
+            <td class="neutral">200名未達</td>
+            <td>BEP到達が1年超</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>12ヶ月時点</td>
+            <td class="positive">250名超</td>
+            <td>拡張フェーズへ</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert" style="margin-top:16px; padding:16px 20px;">
+        <p style="font-size:13px;"><strong style="color:var(--accent2);">旧版の撤退ライン「50名」は甘すぎ。</strong><br>50名では月▲90万超の赤字が3ヶ月続く。現実的な基準に改訂。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section id="phases">
+  <div class="section-label">Section 05 — フェーズ計画</div>
+  <h2>12ヶ月の<br>ロードマップ</h2>
+
+  <div class="phase-block" style="margin-bottom:48px;">
+    <div class="phase-item">
+      <div class="phase-num">PHASE 0</div>
+      <div class="phase-title">設計・準備期</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">価格設定確定<br>100名の開業前確約<br>施工・マシン発注<br>GW デルタF視察</p>
+      <div class="phase-arrow">›</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-num">PHASE 1</div>
+      <div class="phase-title">開業〜3ヶ月</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">目標：100名<br>MEO最適化スタート<br>コミュニティ形成開始<br>撤退判断ライン：100名</p>
+      <div class="phase-arrow">›</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-num">PHASE 2</div>
+      <div class="phase-title">3〜6ヶ月</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">目標：150名<br>PT体験会で口コミ拡大<br>ランニングクラブ発足<br>SNS投稿の習慣化</p>
+      <div class="phase-arrow">›</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-num">PHASE 3</div>
+      <div class="phase-title">6〜12ヶ月</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">目標：BEP（177名）達成<br>黒字化（250名）<br>オーナー業への移行<br>2号店・拡張検討</p>
+    </div>
+  </div>
+
+  <h3>開業前に必ず達成すること</h3>
+  <div class="divider"></div>
+  <div class="grid-3" style="margin-top:8px;">
+    <div class="card card-danger">
+      <h3 style="font-size:15px; color:var(--accent2);">🚨 最優先</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; margin-top:8px;">開業前100名の確約を取る<br>（撤退基準の現実的担保）</p>
+    </div>
+    <div class="card card-danger">
+      <h3 style="font-size:15px; color:var(--accent2);">🚨 最優先</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; margin-top:8px;">価格設定の意思決定<br>¥4,980 vs ¥6,980<br>このビジネスの命運を分ける</p>
+    </div>
+    <div class="card card-warn">
+      <h3 style="font-size:15px; color:var(--orange);">⚡ 重要</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; margin-top:8px;">競合ヒアリング再挑戦<br>（エニタイム等で実数データ取得）<br>村山くんで取れなかった項目</p>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section id="strategy">
+  <div class="section-label">Section 06 — 戦略修正</div>
+  <h2>村山くんデータが<br>教えてくれた3つのこと</h2>
+
+  <div class="grid-3" style="margin-top:16px;">
+    <div class="card card-accent" style="padding:32px;">
+      <div style="font-size:40px; margin-bottom:16px;">01</div>
+      <h3>価格を上げろ</h3>
+      <div class="divider"></div>
+      <p style="font-size:14px; color:var(--muted); line-height:1.8;">家賃ゼロのアドバンテージを活かして、Fit Placeと同じ¥4,980に合わせる必要はない。<br><br>¥6,980でもエリア最安値クラスを維持。BEPが243名→177名に改善。<br><br><strong style="color:var(--accent);">+¥2,000の差は「広い・混まない・コミュニティ」で正当化できる。</strong></p>
+    </div>
+    <div class="card card-accent" style="padding:32px;">
+      <div style="font-size:40px; margin-bottom:16px;">02</div>
+      <h3>PTは体験価値の柱</h3>
+      <div class="divider"></div>
+      <p style="font-size:14px; color:var(--muted); line-height:1.8;">PT利用率1.2%という実数は「PTは売れない」ではなく、<strong style="color:var(--text);">「PTは特別体験として設計せよ」</strong>というメッセージ。<br><br>PT体験会（無料）→コミュニティ形成→口コミ集客の動線として使う。<br><br><strong style="color:var(--accent);">収益の柱はジム会員費。PTは差別化装置。</strong></p>
+    </div>
+    <div class="card card-accent" style="padding:32px;">
+      <div style="font-size:40px; margin-bottom:16px;">03</div>
+      <h3>ヤドカリの逆をやれ</h3>
+      <div class="divider"></div>
+      <p style="font-size:14px; color:var(--muted); line-height:1.8;">Fit Placeはイオン隣接で人の流れを借りる。Be Coは固定拠点。<br><br>逆に、コミュニティが人を引き寄せる拠点として設計する。<br><br><strong style="color:var(--accent);">ランニングクラブ・地域清掃・朝活イベント→口コミ→会員獲得</strong>のサイクルがFit Placeには絶対できない差別化。</p>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:40px;">
+    <h3 style="margin-bottom:16px;">差別化ポジショニング</h3>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Fit Place 24（競合）</p>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>価格の安さ</span><span style="color:var(--accent2);">◎</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:95%; background:var(--accent2);"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>コミュニティ</span><span style="color:var(--accent2);">×</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:15%; background:var(--accent2);"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>広さ・快適さ</span><span style="color:var(--accent2);">△</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%; background:var(--accent2);"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>差別化（入れ替えにくさ）</span><span style="color:var(--accent2);">×</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:20%; background:var(--accent2);"></div></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Be Co Fitness（目指す姿）</p>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>価格の安さ</span><span style="color:var(--accent);">○</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:75%;"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>コミュニティ</span><span style="color:var(--accent);">◎</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:95%;"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>広さ・快適さ</span><span style="color:var(--accent);">◎</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%;"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>差別化（入れ替えにくさ）</span><span style="color:var(--accent);">◎</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section id="actions">
+  <div class="section-label">Section 07 — ネクストアクション</div>
+  <h2>今すぐやること</h2>
+
+  <table style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th>優先度</th>
+        <th>アクション</th>
+        <th>期限</th>
+        <th>KPI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-red">🔴 最優先</span></td>
+        <td><strong>価格設定の意思決定</strong>：¥4,980 vs ¥6,980</td>
+        <td>今週中</td>
+        <td>決定</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">🔴 最優先</span></td>
+        <td><strong>開業前100名確約を取る</strong>（撤退基準の現実担保）</td>
+        <td>開業1ヶ月前</td>
+        <td>確約100名</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-orange">🟡 重要</span></td>
+        <td><strong>競合ヒアリング再挑戦</strong>（エニタイム等）未取得の実数データ獲得</td>
+        <td>来週中</td>
+        <td>退会率・BEP実数</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-orange">🟡 重要</span></td>
+        <td><strong>人件費スリム化検討</strong>：初期はりょーま1人+パートでBEPを下げる</td>
+        <td>設計段階</td>
+        <td>固定費-30万削減</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-orange">🟡 重要</span></td>
+        <td><strong>父・会長へのプレゼン</strong>：この地獄シナリオで承認取得</td>
+        <td>今月中</td>
+        <td>承認</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">🟢 推奨</span></td>
+        <td><strong>GW大阪：デルタフィットネス視察</strong>（県内初の差別化マシン）</td>
+        <td>GW</td>
+        <td>導入可否判断</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">🟢 推奨</span></td>
+        <td><strong>MEO設定スタート</strong>：Googleビジネスプロフィール構築</td>
+        <td>開業2ヶ月前</td>
+        <td>競合比1位</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid-2" style="margin-top:48px; gap:24px;">
+    <div class="card card-safe">
+      <h3 style="color:var(--accent3);">このビジネスが成功する条件</h3>
+      <ul style="font-size:14px; color:var(--muted); line-height:2.0; list-style:none; margin-top:16px;">
+        <li>✅ ¥6,980設定でBEP177名を目指す</li>
+        <li>✅ 開業前に100名を確約させる</li>
+        <li>✅ コミュニティ（サードプレイス）で差別化する</li>
+        <li>✅ MEO最優先でオーガニック集客する</li>
+        <li>✅ 家賃ゼロの強みを価格に反映しない（利益に転換）</li>
+      </ul>
+    </div>
+    <div class="card card-danger">
+      <h3 style="color:var(--accent2);">やってはいけないこと</h3>
+      <ul style="font-size:14px; color:var(--muted); line-height:2.0; list-style:none; margin-top:16px;">
+        <li>❌ Fit Placeと価格競争する</li>
+        <li>❌ PTを主力収益として計画する</li>
+        <li>❌ 開業時から多店舗展開を急ぐ</li>
+        <li>❌ 初期から正社員2名体制を維持する（固定費が重すぎ）</li>
+        <li>❌ MEOより先に広告費を使う</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="font-size:14px; color:var(--accent); font-weight:700; margin-bottom:8px;">Be Co Fitness 事業計画書 v2.0</p>
+  <p>地獄シナリオ改訂版 — Fit Placeヒアリング（村山くん）データ反映 — 2026.3.22</p>
+  <p style="margin-top:8px;">Q1-Q54 + Q55-Q59（GenSpark）セッション＋実地ヒアリングデータ統合版</p>
+</footer>
+
+</body>
+</html>
