@@ -18,10 +18,10 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-threads-pdca-foundation.md
-branch: feat/threads-pdca-foundation
+active: plan/playbook-threads-pdca-objection-check.md
+branch: feat/threads-pdca-objection-check
 last_archived: plan/archive/playbook-m082-archive-check.md
-previous: plan/playbook-threads-community-skill.md  # discarded（ユーザー指示によりタスク破棄。playbook ファイルは削除済み・成果物なし）
+previous: plan/playbook-threads-pdca-foundation.md  # completed（threads-pdca スキル新規構築。main にマージ済み / base_commit 113cff0）
 ```
 
 ---
@@ -32,12 +32,11 @@ previous: plan/playbook-threads-community-skill.md  # discarded（ユーザー�
 milestone: null
 phase: p_final (done)
 done_criteria:
-  - "「.claude/skills/threads-pdca/SKILL.md」の先頭 frontmatter ブロック内に『name: threads-pdca』（ディレクトリ名と一致）と description: が存在し、description に「」で囲まれたトリガーフレーズが2個以上含まれている"
-  - "SKILL.md に『## ワークフロー1』〜『## ワークフロー4』の4見出しが存在し、各セクション内に『発火フレーズ』行・番号付きステップ3個以上・references/ 配下ファイルへの参照が存在する"
-  - "「.claude/skills/threads-pdca/references/pattern-library.md」に A〜G の7型セクションが存在し、各区間内に『出典』『型の構造』『効く理由』と、行頭が【 で始まる構造行が型別の下限数（A〜D:3 / E:7 / F:7 / G:8）以上存在する"
-  - "pattern-library.md の各型区間内に、その型の出典アカウント名が正しく記載されている（A〜D: leven_base / E: riki.days_ / F: iam_kk_620 / G: hi.hi.hi999 と tomokazu_0008）"
-  - "pattern-library.md の『## 執筆時の一般注意』セクション区間内に、絵文字・タメ口・地域名・活動そのもの に言及する箇条書きが5項目以上存在する"
-  - "「.claude/skills/threads-pdca/references/my-posts-log.md」に『ログ』を含む H2 見出しがあり、その区間内の表が2行のみ（データ行0件）で、1行目が5列のテーブルヘッダ行（日付/投稿文（要約）/狙った型/実績（いいね/コメント/保存）/気づき）、2行目が5列の区切り行であり、かつ『## 記入方法』区間内に箇条書きが5項目以上存在する"
+  - "SKILL.md の『## ワークフロー2』区間内に『断らせる』を含む H3 見出しがあり、本体リスト（H3 より前）の既存5ステップと断らせるチェックの導線ステップが inputs 追記文面1 の通りステップ行として逐語存在し、その順序が 内容受取 → 型選択 → 断らせるチェック → 下書き作成 → 一般注意 → ログ記録案内 であり、H3 手順の4ステップ（ペルソナ設定／10個の理由出し／3分類／下書きへの反映）も番号付きステップ行として逐語存在し、その順序が ペルソナ → 10個 → 3分類 → 反映 である"
+  - "SKILL.md の『## ワークフロー4』区間内に『断らせる』を含む H3 見出しがあり、本体リストの既存4ステップと原因分析の導線ステップが inputs 追記文面2 の通りステップ行として逐語存在し、その順序が データ行抽出 → 集計 → 傾向分析 → 低反応型の原因分析 → 次 Plan 提案 であり、H3 手順の4ステップ（ペルソナ設定／10個の理由出し／提案化／注記候補に留め自動書き込みしない）も番号付きステップ行として逐語存在し、その順序が ペルソナ → 10個 → 提案 → 注記候補 である"
+  - "SKILL.md に『断らせる』と『コツ』を含む H2 見出しが1個だけ存在し、その見出し行が『## ワークフロー4』より後の行にあり、区間内に inputs 追記文面3 の4点が `- ` 箇条書き行として行全体逐語で存在し（4項目以上）、年齢／10個／『今の回答は建前です。同じ質問に、本音で答え直してください』／真に受け／教科書 の5要素を含み、うち4要素が別々の行に分かれている"
+  - "SKILL.md の先頭 frontmatter 区間内の description に、既存4トリガーフレーズ（「Threadsの投稿分析して」「Threadsの投稿作って」「投稿の実績を記録して」「Threadsの振り返りして」）が全て残存し、かつ「断らせて」「反応しない理由を出して」が追加されており、さらに『## このスキルでできること』区間に『断らせる』を含む番号付き項目が5個以上ある"
+  - "回帰: SKILL.md の『## ワークフロー1』〜『## ワークフロー4』の見出し行4本と、ワークフロー1・3 の区間内容が base_commit(113cff0) 版と1文字も相違なく、ワークフロー2・4 の本体リスト（H3 より前）に既存ステップ本文と発火フレーズ行が逐語で残存し、ワークフロー1〜4 の4区間すべてが『発火フレーズ』行・`references/` 参照・番号付きステップ3個以上を満たす"
 ```
 
 ---
