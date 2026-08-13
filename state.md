@@ -18,10 +18,11 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-threads-pdca-objection-check.md
-branch: feat/threads-pdca-objection-check
+active: plan/playbook-video-editing-ffmpeg-skill.md
+branch: feat/video-editing-ffmpeg-skill
+reviewed: false  # ★ 4回目レビュー（Critical 0 / Major 2 / Minor 3）を反映済み・再レビュー待ち。LOOP 開始前に Task(subagent_type="reviewer") で PASS を得ること
 last_archived: plan/archive/playbook-m082-archive-check.md
-previous: plan/playbook-threads-pdca-foundation.md  # completed（threads-pdca スキル新規構築。main にマージ済み / base_commit 113cff0）
+previous: plan/playbook-threads-pdca-objection-check.md  # completed（断らせるチェック追加。main にマージ済み / 4ceca51）
 ```
 
 ---
@@ -30,13 +31,15 @@ previous: plan/playbook-threads-pdca-foundation.md  # completed（threads-pdca �
 
 ```yaml
 milestone: null
-phase: p_final (done)
+phase: p1 (pending)
 done_criteria:
-  - "SKILL.md の『## ワークフロー2』区間内に『断らせる』を含む H3 見出しがあり、本体リスト（H3 より前）の既存5ステップと断らせるチェックの導線ステップが inputs 追記文面1 の通りステップ行として逐語存在し、その順序が 内容受取 → 型選択 → 断らせるチェック → 下書き作成 → 一般注意 → ログ記録案内 であり、H3 手順の4ステップ（ペルソナ設定／10個の理由出し／3分類／下書きへの反映）も番号付きステップ行として逐語存在し、その順序が ペルソナ → 10個 → 3分類 → 反映 である"
-  - "SKILL.md の『## ワークフロー4』区間内に『断らせる』を含む H3 見出しがあり、本体リストの既存4ステップと原因分析の導線ステップが inputs 追記文面2 の通りステップ行として逐語存在し、その順序が データ行抽出 → 集計 → 傾向分析 → 低反応型の原因分析 → 次 Plan 提案 であり、H3 手順の4ステップ（ペルソナ設定／10個の理由出し／提案化／注記候補に留め自動書き込みしない）も番号付きステップ行として逐語存在し、その順序が ペルソナ → 10個 → 提案 → 注記候補 である"
-  - "SKILL.md に『断らせる』と『コツ』を含む H2 見出しが1個だけ存在し、その見出し行が『## ワークフロー4』より後の行にあり、区間内に inputs 追記文面3 の4点が `- ` 箇条書き行として行全体逐語で存在し（4項目以上）、年齢／10個／『今の回答は建前です。同じ質問に、本音で答え直してください』／真に受け／教科書 の5要素を含み、うち4要素が別々の行に分かれている"
-  - "SKILL.md の先頭 frontmatter 区間内の description に、既存4トリガーフレーズ（「Threadsの投稿分析して」「Threadsの投稿作って」「投稿の実績を記録して」「Threadsの振り返りして」）が全て残存し、かつ「断らせて」「反応しない理由を出して」が追加されており、さらに『## このスキルでできること』区間に『断らせる』を含む番号付き項目が5個以上ある"
-  - "回帰: SKILL.md の『## ワークフロー1』〜『## ワークフロー4』の見出し行4本と、ワークフロー1・3 の区間内容が base_commit(113cff0) 版と1文字も相違なく、ワークフロー2・4 の本体リスト（H3 より前）に既存ステップ本文と発火フレーズ行が逐語で残存し、ワークフロー1〜4 の4区間すべてが『発火フレーズ』行・`references/` 参照・番号付きステップ3個以上を満たす"
+  - "DW1: .claude/skills/video-editing-ffmpeg/SKILL.md が存在し、先頭 frontmatter の name が video-editing-ffmpeg で、description に inputs 起動フレーズ6個が全て逐語で含まれ、本文に `## ワークフロー1` `## ワークフロー2` `## ワークフロー3` の H2 見出しが各1本ずつ存在し、各ワークフロー区間内に `references/` へのパス参照行と `scripts/` へのパス参照行がそれぞれ1行以上存在する"
+  - "DW2: references/ffmpeg-pitfalls.md に落とし穴3件の H2 見出し（`## 落とし穴1` `## 落とし穴2` `## 落とし穴3`）が存在し、ファイル全体に inputs 検証済み事実の逐語文字列7個（`drawtext`, `libfreetype`, `tonemap=mobius:param=0.5`, `colorprim=bt709:transfer=bt709:colormatrix=bt709`, `arib-std-b67`, `eq=gamma=1.15:brightness=0.03`, `overlay`）が全て含まれ、落とし穴2 の区間内に NG 例と OK 例の両方が `-i` を含むコードブロック行として存在する"
+  - "DW3: scripts/clip_export.sh が実行権限付きで存在し、(a) 合成 HLG フィクスチャ（color_transfer=arib-std-b67）に対し開始1秒・長さ3秒で実行すると出力 mp4 の format.duration が 2.85〜3.15 に収まり ffprobe の color_transfer / color_space / color_primaries が3つとも bt709 を返し pix_fmt が yuv420p である、(b) 同入力の `--dry-run` 出力に `tonemap=mobius:param=0.5` と `eq=gamma=1.15:brightness=0.03` と `-map \"0:a?\"` の3文字列が逐語で含まれ、かつ**その dry-run 文字列をそのまま eval して得た出力の映像 md5 が、--dry-run 無しで実行した出力の映像 md5 と一致する**（＝dry-run 文字列が実処理を正直に反映しており、逐語 grep が有効な証拠になっている）、(c) 音声トラックの無い入力（tmp/fixture_videoonly.mp4）に対しても exit 0 で duration > 0 の mp4 を生成する、(d) **同一ピクセルで色タグだけ SDR に書き換えた双子フィクスチャ（tmp/fixture_hlg_sdrtag.mp4）を入力にした出力と、HLG フィクスチャを入力にした出力の映像 md5 が異なる**（＝tonemap 分岐が実際にピクセルを変えている・文字列非依存）"
+  - "DW4: scripts/make_label_png.py が日本語文字列を引数に実行でき、出力 PNG が Pillow で mode=RGBA として読め、透明ピクセル（alpha=0）と不透明ピクセル（alpha>0）の両方を含み、その PNG を clip_export.sh のラベル指定で合成した mp4 が生成され duration が 0 より大きく、かつ**同一入力・同一区間をラベル無しで書き出した mp4 と映像 md5 が異なる**（＝ラベルが実際にピクセルとして焼き込まれている）"
+  - "DW5: scripts/scene_scan.sh / scripts/silence_scan.sh / scripts/concat_clips.sh / scripts/transcribe.sh の4本が実行権限付きで存在して bash -n を全て通り、scene_scan.sh がシーン変化2箇所の合成フィクスチャで pts_time 行を2行以上出力し、silence_scan.sh が中央2秒無音の合成フィクスチャで保持区間行を2行以上出力する"
+  - "DW6: references/talk-video-trim.md と references/highlight-reel.md が存在し、talk-video-trim.md に `## 段階1` と `## 段階2` の H2 見出しが各1本存在して段階2区間に `mlx_whisper` が含まれ、highlight-reel.md に `## 手順` H2 見出しが存在して区間内に番号付きステップ行が5行以上ある"
+  - "DW7: 回帰: 追跡済み差分（base_commit 609cc09 比）と未追跡ファイル（git status --porcelain）を合わせた全変更ファイル集合において、`.claude/skills/video-editing-ffmpeg/` 以外の `.claude/skills/` 配下ファイルが0件であり、かつ I-12 の除外集合（`.claude/skills/video-editing-ffmpeg/` 配下・`plan/playbook-video-editing-ffmpeg-skill.md`・`state.md`・`docs/repository-map.yaml`・`.gitignore`・`.claude/agents/critic.md`・`plan/playbook-setup-instagram-skills.md`・`.claude/worktrees/`・`tmp/` 配下）に該当しないファイルが0件である"
 ```
 
 ---

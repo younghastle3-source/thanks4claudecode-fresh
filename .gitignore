@@ -57,3 +57,6 @@ test/core/
 test/scenarios/
 test/results/
 test/template/
+
+# Git worktrees (never commit)
+.claude/worktrees/
