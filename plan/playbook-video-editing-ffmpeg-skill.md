@@ -13,10 +13,48 @@ base_commit: 609cc09  # main の HEAD。既存スキルの回帰検証の比較�
 created: 2026-08-12
 issue: null
 derives_from: null  # ユーザー資産（スキル）の新規構築であり project.done_when に対応なし
-reviewed: false
+reviewed: false  # 4回目レビューまで実施（Critical 0 / Major 2 / Minor 3）。5回目の PASS は取得していない
+status: closed  # 2026-08-15 クローズ（成果物は実装・マージ・push 済み。下記 closure note 参照）
 roles:
   worker: claudecode  # toolstack A（state.md config.roles と一致）
 ```
+
+> **closure note (2026-08-15)**
+>
+> **成果物は完成・マージ・push 済み。ただし正式な reviewer PASS を経ていないため `done` ではなく `closed` として確定する。**
+>
+> **経緯**
+> 1. reviewer による4回のレビューサイクルを実施し、Critical 0 / Major 2 / Minor 3 まで収束した。
+> 2. ユーザーの時間制約により5回目のレビューには回さず、builder SubAgent が本 playbook の記述に従って
+>    `.claude/skills/video-editing-ffmpeg/`（SKILL.md + references/ 3本 + scripts/ 7本）を実装した。
+> 3. DW1〜DW7 を満たすことを確認のうえ branch `feat/video-editing-ffmpeg-skill` にコミット（`ab66d3e`）、
+>    その後 main へ fast-forward マージし origin に push 済み。
+> 4. 実運用検証として、本スキルを使って HYROX のハイライト Reel（タイトルテロップ付き）を1本作成し、
+>    正常に動作することを確認した。
+>
+> **成果物（`ab66d3e` / main 上に存在）**
+> - `.claude/skills/video-editing-ffmpeg/SKILL.md`
+> - `.claude/skills/video-editing-ffmpeg/references/`: `ffmpeg-pitfalls.md` / `highlight-reel.md` / `talk-video-trim.md`
+> - `.claude/skills/video-editing-ffmpeg/scripts/`: `clip_export.sh` / `concat_clips.sh` / `make_label_png.py` /
+>   `probe_color.sh` / `scene_scan.sh` / `silence_scan.sh` / `transcribe.sh`（全て実行権限付き）
+>
+> **クローズ時点で pm が再確認した事項（2026-08-15）**
+> - SKILL.md frontmatter の `name` が `video-editing-ffmpeg` であること: 確認済み
+> - SKILL.md に `## ワークフロー1`〜`3` の H2 が3本存在すること: 確認済み
+> - `ffmpeg-pitfalls.md` に `## 落とし穴1`〜`3` の H2 が3本存在すること: 確認済み
+> - `scripts/` の 7 ファイルが実行権限付きで存在し、`.sh` 6本が `bash -n` を通ること: 確認済み
+> - DW7 回帰: `git diff --name-only 609cc09 HEAD -- .claude/skills/` に
+>   `video-editing-ffmpeg/` 以外のファイルが 0 件であること: 確認済み
+>
+> **未達事項（意図的に残す）**
+> - `reviewed: false` のまま。最終レビュー PASS は取得していない。
+> - subtask のチェックボックスは `- [ ]` のまま残す。pm はビルド時のログを保持しておらず、
+>   個々の subtask を実測検証していないため、`[x]` に変更すると報酬詐欺になる。
+>   実装完了の根拠は上記「経緯」と成果物の存在、および実運用1件での動作確認である。
+> - `p_final` / `final_tasks` も未実行のまま残す（`ft1` repository-map 更新は本 playbook では未実施）。
+>
+> **再開する場合** — 本 playbook を `status: closed` から戻すのではなく、
+> 未消化の Major 2 / Minor 3 の指摘を起点に新規 playbook を作成すること。
 
 ---
 

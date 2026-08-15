@@ -18,11 +18,11 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-video-editing-ffmpeg-skill.md
-branch: feat/video-editing-ffmpeg-skill
-reviewed: false  # ★ 4回目レビュー（Critical 0 / Major 2 / Minor 3）を反映済み・再レビュー待ち。LOOP 開始前に Task(subagent_type="reviewer") で PASS を得ること
-last_archived: plan/archive/playbook-m082-archive-check.md
-previous: plan/playbook-threads-pdca-objection-check.md  # completed（断らせるチェック追加。main にマージ済み / 4ceca51）
+active: plan/playbook-instagram-pdca-skill.md
+branch: feat/instagram-pdca-skill
+reviewed: false  # ★ pm による自己点検は完了（test_command 24本を bash/zsh で実測 PASS、デコイ16種で FAIL 検出）。LOOP 開始前に Task(subagent_type="reviewer") で PASS を得ること
+last_archived: null  # plan/archive/ は本リポジトリに存在しない。完了/クローズした playbook は plan/ に status 付きで残す運用
+previous: plan/playbook-video-editing-ffmpeg-skill.md  # closed（2026-08-15。成果物は main にマージ・push 済み / ab66d3e。reviewer PASS 未取得のため done ではなく closed。詳細は当該 playbook の closure note）
 ```
 
 ---
@@ -33,13 +33,14 @@ previous: plan/playbook-threads-pdca-objection-check.md  # completed（断らせ
 milestone: null
 phase: p1 (pending)
 done_criteria:
-  - "DW1: .claude/skills/video-editing-ffmpeg/SKILL.md が存在し、先頭 frontmatter の name が video-editing-ffmpeg で、description に inputs 起動フレーズ6個が全て逐語で含まれ、本文に `## ワークフロー1` `## ワークフロー2` `## ワークフロー3` の H2 見出しが各1本ずつ存在し、各ワークフロー区間内に `references/` へのパス参照行と `scripts/` へのパス参照行がそれぞれ1行以上存在する"
-  - "DW2: references/ffmpeg-pitfalls.md に落とし穴3件の H2 見出し（`## 落とし穴1` `## 落とし穴2` `## 落とし穴3`）が存在し、ファイル全体に inputs 検証済み事実の逐語文字列7個（`drawtext`, `libfreetype`, `tonemap=mobius:param=0.5`, `colorprim=bt709:transfer=bt709:colormatrix=bt709`, `arib-std-b67`, `eq=gamma=1.15:brightness=0.03`, `overlay`）が全て含まれ、落とし穴2 の区間内に NG 例と OK 例の両方が `-i` を含むコードブロック行として存在する"
-  - "DW3: scripts/clip_export.sh が実行権限付きで存在し、(a) 合成 HLG フィクスチャ（color_transfer=arib-std-b67）に対し開始1秒・長さ3秒で実行すると出力 mp4 の format.duration が 2.85〜3.15 に収まり ffprobe の color_transfer / color_space / color_primaries が3つとも bt709 を返し pix_fmt が yuv420p である、(b) 同入力の `--dry-run` 出力に `tonemap=mobius:param=0.5` と `eq=gamma=1.15:brightness=0.03` と `-map \"0:a?\"` の3文字列が逐語で含まれ、かつ**その dry-run 文字列をそのまま eval して得た出力の映像 md5 が、--dry-run 無しで実行した出力の映像 md5 と一致する**（＝dry-run 文字列が実処理を正直に反映しており、逐語 grep が有効な証拠になっている）、(c) 音声トラックの無い入力（tmp/fixture_videoonly.mp4）に対しても exit 0 で duration > 0 の mp4 を生成する、(d) **同一ピクセルで色タグだけ SDR に書き換えた双子フィクスチャ（tmp/fixture_hlg_sdrtag.mp4）を入力にした出力と、HLG フィクスチャを入力にした出力の映像 md5 が異なる**（＝tonemap 分岐が実際にピクセルを変えている・文字列非依存）"
-  - "DW4: scripts/make_label_png.py が日本語文字列を引数に実行でき、出力 PNG が Pillow で mode=RGBA として読め、透明ピクセル（alpha=0）と不透明ピクセル（alpha>0）の両方を含み、その PNG を clip_export.sh のラベル指定で合成した mp4 が生成され duration が 0 より大きく、かつ**同一入力・同一区間をラベル無しで書き出した mp4 と映像 md5 が異なる**（＝ラベルが実際にピクセルとして焼き込まれている）"
-  - "DW5: scripts/scene_scan.sh / scripts/silence_scan.sh / scripts/concat_clips.sh / scripts/transcribe.sh の4本が実行権限付きで存在して bash -n を全て通り、scene_scan.sh がシーン変化2箇所の合成フィクスチャで pts_time 行を2行以上出力し、silence_scan.sh が中央2秒無音の合成フィクスチャで保持区間行を2行以上出力する"
-  - "DW6: references/talk-video-trim.md と references/highlight-reel.md が存在し、talk-video-trim.md に `## 段階1` と `## 段階2` の H2 見出しが各1本存在して段階2区間に `mlx_whisper` が含まれ、highlight-reel.md に `## 手順` H2 見出しが存在して区間内に番号付きステップ行が5行以上ある"
-  - "DW7: 回帰: 追跡済み差分（base_commit 609cc09 比）と未追跡ファイル（git status --porcelain）を合わせた全変更ファイル集合において、`.claude/skills/video-editing-ffmpeg/` 以外の `.claude/skills/` 配下ファイルが0件であり、かつ I-12 の除外集合（`.claude/skills/video-editing-ffmpeg/` 配下・`plan/playbook-video-editing-ffmpeg-skill.md`・`state.md`・`docs/repository-map.yaml`・`.gitignore`・`.claude/agents/critic.md`・`plan/playbook-setup-instagram-skills.md`・`.claude/worktrees/`・`tmp/` 配下）に該当しないファイルが0件である"
+  - "DW1: .claude/skills/instagram-pdca/SKILL.md の先頭 frontmatter 内に `name: instagram-pdca` の行が存在し、`description:` 行に inputs I-1 の起動フレーズ6個が全て逐語（鍵括弧込み）で含まれる"
+  - "DW2: SKILL.md に `## ワークフロー1`〜`## ワークフロー4` の H2 が各1本ずつ存在し、各区間内に『発火フレーズ』を含む行が1行以上・行頭が `{数字}. ` の番号付きステップが3行以上・`references/` を含む行が1行以上存在する。さらに ワークフロー2 区間の番号付きステップ行に『断らせる』が、ワークフロー4 区間の番号付きステップ行に『原因分析』が含まれ、ワークフロー2 区間内に H3 `### 断らせるチェックの手順` が存在し、その区間内で『ペルソナ』の初出行が『**10個**』の初出行より前にある"
+  - "DW3: SKILL.md に `## 既存スキルとの役割分担` の H2 が1本存在し、その区間内に `.claude/skills/instagram-フック型ショート台本.md` / `.claude/skills/instagram-日常ブリッジ台本.md` / `.claude/skills/threads-pdca/` / `instagram-pdca` の4文字列が全て逐語で含まれ、『委譲』を含む行が1行以上あり、`|` で始まる表の行が6行以上ある"
+  - "DW4: references/pattern-library.md に inputs I-2 の8型の H2（`## IG-R1 `〜`## IG-S1 `）が各1本ずつ存在し、各型区間に `**フォーマット**: {リール|フィード|ストーリーズ}` が I-2 で定めた値と逐語一致で存在し、`**出典**: ` / `**主指標**: ` の行が各1行・`### 型の構造` / `### 効く理由` の H3 が各1本・行頭が `【` の構造行が3行以上存在する。加えて IG-R1 区間に `instagram-フック型ショート台本.md`、IG-R2 区間に `instagram-日常ブリッジ台本.md` が含まれ、`## 使い分け早見表` 区間の `|` 行が10行以上ある"
+  - "DW5: references/format-guide.md に `## リール` / `## フィード` / `## ストーリーズ` / `## ハッシュタグ戦略` / `## 指標の定義` の H2 が各1本ずつ存在し、前3者の各区間に `- 役割: ` `- 主指標: ` `- 向いている型: ` `- 選ぶ判断: ` で始まり内容が続く行が各1行ずつ存在し、ハッシュタグ戦略区間に行頭 `- ` の行が5行以上かつ『大規模』『中規模』『小規模』が逐語で含まれ、指標の定義区間に inputs I-3 の7指標の定義行が各1行ずつ存在する"
+  - "DW6: references/my-posts-log.md の `## 投稿実績ログ` 区間で `|` で始まる行がちょうど2行（ヘッダ＋区切りのみ＝データ行0件）であり、ヘッダ行が inputs I-4 の12列ヘッダと文字列完全一致する。さらに `## 記入方法` の H2 が存在し、その区間に行頭 `- ` の行が6行以上あり、『ダミーデータ・例示行を入れない』と `format-guide.md` と `pattern-library.md` が逐語で含まれる"
+  - "DW7: 非重複: `.claude/skills/instagram-pdca/` 配下の全ファイルにおいて、既存の instagram 台本スキル2本に固有の文字列（`数字×悲劇` / `行動×ネガティブ結果` / `Gap Hook` / `日常ブリッジの5つの入口パターン` / `ブリッジ台本を書く`）を含むファイルが0件である"
+  - "DW8: 回帰: base_commit ab66d3e からの追跡済み差分・作業ツリー差分・未追跡ファイルを合わせた全変更ファイル集合において、(a) `.claude/skills/` 配下で `.claude/skills/instagram-pdca/` 以外のファイルが0件であり、(b) inputs I-5 の allowlist に該当しないファイルが0件である"
 ```
 
 ---
