@@ -15,6 +15,13 @@ triggers:
 
 # メイカラ式 ブログライティングスキル
 
+## 参照リポジトリ（GitHub・おっくん自身のナレッジ）
+
+このスキルで記事執筆・添削・リライトを行う際は、`blog.writing` リポジトリ（github.com/younghastle3-source/blog.writing）を一次情報として参照すること。
+
+1. `gh api repos/younghastle3-source/blog.writing/contents/AI_CONTEXT.md` を読み、リポジトリの構成・性格を把握する
+2. 関連するメイカラ講座ノートを `gh api` で探して読み、そこで学んだライティング原則を優先して使う
+
 ## 基本：Webライティング6つのルール
 
 文章を書く際は必ず以下を守る：

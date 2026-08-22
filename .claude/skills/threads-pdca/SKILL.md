@@ -7,6 +7,14 @@ description: Threads 投稿の PDCA（新規アカウント分析→Plan→Check
 
 > **参考アカウントの投稿から型を学び、自分の投稿に活かし、実績を振り返って次に繋げるための PDCA スキルです。**
 
+## 参照リポジトリ（GitHub・おっくん自身のナレッジ）
+
+このスキルで投稿案作成・分析・壁打ちを行う際は、`marketing` リポジトリ（github.com/younghastle3-source/marketing）を一次情報として参照すること。
+
+1. `gh api repos/younghastle3-source/marketing/contents/AI_CONTEXT.md` を読み、リポジトリの構成・性格を把握する
+2. 相談内容に関連しそうなファイル（Be Co Gym戦略、LP原稿、メイカラ講座メモ、SNS戦略メモ等）を `gh api` で探して読む
+3. 一般論より、ここにある実体験・実データ・実際に学んだ内容を優先して回答に使う
+
 ## このスキルでできること
 
 1. 参考アカウントの投稿をコピペで受け取り、**型ライブラリ（A〜J、随時拡張）に統合**する
