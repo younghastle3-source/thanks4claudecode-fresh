@@ -20,6 +20,13 @@ triggers:
 
 ---
 
+## 参照リポジトリ（GitHub・おっくん自身のナレッジ）
+
+このスキルで営業トーク作成・壁打ちを行う際は、`sales` リポジトリ（github.com/younghastle3-source/sales）を一次情報として参照すること。
+
+1. `gh api repos/younghastle3-source/sales/contents/AI_CONTEXT.md` を読み、リポジトリの構成・性格を把握する
+2. 関連する営業侍セミナーノート等を `gh api` で探して読み、一般論より実際に学んだ内容を優先して使う
+
 ## 営業の本質定義
 
 ```yaml
