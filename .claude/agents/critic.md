@@ -1,6 +1,6 @@
 ---
 name: critic
-description: MUST BE USED before marking any task as done. Evaluates done_criteria with evidence-based judgment. Prevents self-reward fraud through critical thinking.
+description: done_criteriaの達成を証拠ベースで厳しく審査し、自己報酬詐欺を防ぐ品質監視エージェント
 tools: Read, Grep, Bash
 model: opus
 skills: state, lint-checker, test-runner
