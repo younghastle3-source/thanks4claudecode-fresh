@@ -111,6 +111,7 @@ gh api "repos/younghastle3-source/training/contents/{パス列の値}" --jq '.co
 
 | Part | 切り出し先スキル | 状態 |
 |---|---|---|
+| Part111 | `.claude/skills/shoulder-pain-rehabilitation/` | 済（3大トラブルとして統合） |
 | Part122 | `.claude/skills/速筋遅筋-weight-training-theory/` | 済 |
 | Part123 | `.claude/skills/shoulder-pain-rehabilitation/` | 済 |
 | Part126 | `.claude/skills/personal-session-communication/` | 済 |
