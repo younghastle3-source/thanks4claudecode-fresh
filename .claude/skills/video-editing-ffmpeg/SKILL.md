@@ -7,8 +7,14 @@ description: ffmpeg(8.0.1 / Homebrew)を使った動画編集スキル。「動�
 
 このマシンの ffmpeg には `drawtext` / `subtitles` フィルタが無い（`libfreetype` /
 `libass` 未導入）。テロップは必ず Pillow で PNG を生成して overlay 合成する。
-作業を始める前に必ず `references/ffmpeg-pitfalls.md`（落とし穴3件: drawtext不在 /
-`-t` 配置ミス / HDR真っ暗問題）に目を通すこと。
+作業を始める前に必ず `references/ffmpeg-pitfalls.md`（落とし穴8件: drawtext不在 /
+`-t` 配置ミス / HDR真っ暗問題 / concat後の再生停止 / SAR素材の黒帯 / concat時の音声サンプルレート不一致 /
+concat時の映像フレームレート不一致 / SAR未リセットによる出力全体の歪み表示）に目を通すこと。
+すべてのクリップの `fps`/`-framerate` は `30000/1001` に統一し、SAR補正を行うクリップは
+crop直後と最終出力の両方で必ず `setsar=1` を明示する。
+
+素材をこれから自分で撮影する相談が来た場合は `references/shooting-basics.md`
+（カメラ設定・ライティング・構図・冒頭の視覚的フック・B-roll撮影法）も参照する。
 
 ## ワークフロー1: トーク動画の整音トリム（簡易 / ffmpeg のみ）
 

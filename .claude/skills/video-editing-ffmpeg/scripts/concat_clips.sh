@@ -2,6 +2,7 @@
 # concat_clips.sh -o <出力mp4> <clip1> <clip2> ...
 # concat demuxer で複数クリップを結合する。中間リストファイルは tmp/ 配下に作る
 # （リポジトリを汚さない）。
+# 注意: -c copy 結合のため、出力後に必ず再エンコードすること（落とし穴4: references/ffmpeg-pitfalls.md）。
 set -eu
 
 if [ "${1:-}" != "-o" ]; then
