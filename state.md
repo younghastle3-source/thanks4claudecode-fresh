@@ -119,33 +119,24 @@ done_criteria:
 
 ```yaml
 pre_existing_uncommitted:
-  count: 7  # modified 4 + untracked 3（2026-09-01 実測。reviewer 指摘 C1 で playbook-kubota-ai-adoption-order.md を追加）
+  count: 5  # modified 4 + untracked 1（2026-09-01 実測。kubota_ai_adoption_order_task_in_parallel 完了・merge 済みのため2件削除）
   files: |
     M .claude/skills/instagram-pdca/references/my-posts-log.md
     M .claude/skills/instagram-pdca/references/pattern-library.md
     M .claude/skills/video-editing-ffmpeg/SKILL.md
     M .claude/skills/video-editing-ffmpeg/references/shooting-basics.md
     ?? plan/inputs-ai-tools-articles-20260827.md
-    ?? plan/inputs-kubota-ai-adoption-order-20260901.md
-    ?? plan/playbook-kubota-ai-adoption-order.md
   note: 現タスク（久保田式提案書ノートスキルの新規作成）開始前・作成中から作業ツリーに浮いている先行差分。本タスクの成果物ではないため絶対にコミットしないこと（playbook の I-8 PRE / ft3 参照）。`git add -A` / `git commit -a` / `git checkout .` / `git reset --hard` は全て禁止
 
-kubota_ai_adoption_order_task_in_parallel:
-  files:
-    - plan/inputs-kubota-ai-adoption-order-20260901.md   # 正典（90行）
-    - plan/playbook-kubota-ai-adoption-order.md          # playbook（87,627 バイト・別 pm が作成）
+kubota_ai_adoption_order_task_completed:
   note: |
-    久保田亮の X Article「ChatGPTを社員に配って終わる会社と、変わる会社。最初に任せた仕事が違いました。」
-    を 久保田式マーケメソッドmeikara-marketing へ統合する**別タスク**の資産。
-    正典の冒頭に「マーケメソッド追記用」と明記されている。
-    2026-09-01 の提案書ノートスキル作成タスクと**並行して**作業ツリーに出現した
-    （playbook のほうは提案書ノートタスクの playbook 作成中に別 pm が作成）。
-    提案書ノートタスクの正典（plan/inputs-kubota-proposal-notebooklm-20260901.md）とは無関係。
-    提案書ノートタスク側からは PRE 扱いで一切コミットしない。
-    2タスクが同一ブランチ上で並走している状態のため、どちらの ft3 でも
-    `git add -A` / `git commit -a` は特に危険（相手の未完成の成果物を巻き込む）
-    提案書ノートタスク（本タスク）は完了時点でこの2ファイルにまだ未着手。
-    marketing への統合は別タスクとして今後 playbook-kubota-ai-adoption-order.md 側で進める
+    久保田亮の X Article「ChatGPTを社員に配って終わる会社と、変わる会社。最初に任せた仕事が違いました。」を
+    久保田式マーケメソッドmeikara-marketing へ統合するタスク（並行 pm が playbook 作成、reviewer PASS 後に
+    worktree 方式で実装）は 2026-09-01 に完了。worktree `.claude/worktrees/kai` 上でコミット b0f29d3 を作成し、
+    main を d407efe → b0f29d3 に fast-forward、worktree は削除済み。作業ツリーに浮いていた正典・playbook の
+    未追跡コピー2件（plan/inputs-kubota-ai-adoption-order-20260901.md / plan/playbook-kubota-ai-adoption-order.md）
+    は main の内容と重複するため削除済み。本タスク（提案書ノートタスク）とは無関係だったため、
+    plan/playbook-kubota-proposal-note-skill.md 側の goal/done_criteria には影響しない。
 
 threads_pdca_manual_log_has_real_data:
   file: .claude/skills/threads-pdca/references/my-posts-log.md
@@ -191,7 +182,7 @@ stray_untracked_file_kubota_task:
 ## session
 
 ```yaml
-last_start: 2026-08-31 22:30:00
+last_start: 2026-09-01 17:45:12
 last_end: 2026-08-31 23:20:47
 last_clear: 2026-08-15 00:00:00
 ```
