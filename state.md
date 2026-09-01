@@ -18,11 +18,11 @@ project: plan/project.md
 ## playbook
 
 ```yaml
-active: plan/playbook-threads-pdca-auto-log.md
-branch: feat/threads-pdca-auto-log  # 574b9ad から新規作成。main ではなく直前タスクの HEAD から分岐（理由は playbook の meta 参照）
-reviewed: true  # reviewer 1回目 Needs Changes（Critical 2 / Major 5 / Minor 8）→ 全件反映済み。C1（区間抽出のフェンス未対応）と C2（表検証の正規表現破綻）は実測で再現・修正確認済み
+active: plan/playbook-kubota-proposal-note-skill.md
+branch: feat/kubota-proposal-note-skill  # f39feb9 から新規作成。main（d407efe）は大きく遅れているため使わない（理由は playbook の meta 参照）
+reviewed: false  # reviewer 未レビュー。pm 作成直後。★ LOOP 開始前に必ず reviewer を通すこと
 last_archived: null  # plan/archive/ は本リポジトリに存在しない。完了/クローズした playbook は plan/ に status 付きで残す運用
-previous: plan/playbook-kubota-x-articles-integration.md  # p_final passed（DW1〜DW11 実測）。574b9ad でコミット済み
+previous: plan/playbook-threads-pdca-auto-log.md  # p_final passed（DW1〜DW11 実測）。f39feb9 でコミット済み
 ```
 
 ---
@@ -30,10 +30,33 @@ previous: plan/playbook-kubota-x-articles-integration.md  # p_final passed（DW1
 ## goal
 
 ```yaml
+milestone: 久保田式提案書ノートスキル（meikara-proposal）の新規作成
+phase: p_final (passed, DW1〜DW12 実測。コミットは ft3 待ち)
+previous_milestone: threads-pdca スキルの実績データを自動収集ログに切り替え、型/CV を分離ログ化（p_final passed, DW1〜DW11 実測。f39feb9 でコミット済み。記録は previous_goal_3 参照）
+decisions:
+  - "D1（ユーザー決定 2026-09-01）: 既存の久保田系2スキル（meikara-marketing / meikara-blog）には1バイトも追記せず、新規スキル久保田式提案書ノートmeikara-proposalとして独立させる。記事2（下調べ）→記事1（骨組み）の時系列で1本のワークフローに統合し、コピペ用の指示文2本（ステップ4・ステップ5）のみ正典から逐語保持する"
+done_criteria:
+  - "DW1: `.claude/skills/久保田式提案書ノートmeikara-proposal/` が存在し、その配下の**ファイルがちょうど1件（`SKILL.md`）**。frontmatter に `name: meikara-proposal` があり、`description:` が1行かつ60文字以上で `NotebookLM` / `受注` / `失注` / `下調べ` / `骨組み` の5語を全て含み、`triggers:` 直下の `  - ` 行が6行以上。ファイル全体の行数が190〜380行で、フェンス対応 H2C で数えた H2 がちょうど16本"
+  - "DW2: I-3 で指定した16本の H2 が各1本ずつ存在し、コピペ用2セクション（ステップ4 / ステップ5）を除く14区間に実体行（`- ` / `{数字}. ` / `\|` 始まり）が3行以上、コピペ用2区間には解説の実体行（`- ` / `{数字}. ` 始まり）が2行以上ある"
+  - "DW3: 既存2スキル `久保田式マーケメソッドmeikara-marketing/SKILL.md` と `久保田式ライティングmeikara-blog/SKILL.md` が base_commit f39feb9 から**完全に無変更**である（`git diff --numstat` が空、かつ `cmp -s` でバイト一致）"
+  - "DW4: `## 参照リポジトリ（GitHub・おっくん自身のナレッジ）` 区間に `gh api repos/younghastle3-source/marketing/contents/AI_CONTEXT.md` と `一次情報` が含まれる。`## いつ使うか（発火フレーズ）` 区間に `- 「…」` 形式の行が6行以上あり `提案書の骨組み` / `提案ノート` / `下調べ` を含む"
+  - "DW5: `## 全体像：下調べ→骨組みの2フェーズ` 区間に `\|` 始まりの行が6行以上あり、`下調べ` / `骨組み` / `準備プロンプト` / `4段階` を全て含み、**`下調べ` の初出行が `骨組み` の初出行より前にある**（記事2 → 記事1 の時系列）"
+  - "DW6: `## 前提：勝ちパターンは自分の過去にしかない` 区間に `フリーランス白書2025` / `人脈` / `過去と現在の取引先` / `エージェント` / `Gemini Notebook` / `2026年7月16日` / `窓の杜` / `読書` が全て含まれ、実体行が4行以上あり、(a) `一般論` を含む行が1行以上ありそのうち1行以上が否定語を伴い、(b) `読書` を含む行のうち1行以上が `案件` または `下調べ` を含む"
+  - "DW7: `## ステップ1：ノートに入れる資料4種類` 区間に `公開情報` / `採用ページ` / `受注` / `失注` / `5件` / `3件` / `文字起こし` / `ファイル名` が全て含まれ、`\|` 行が6行以上あり、(a) `要約` を含む行が1行以上ありそのうち1行以上が否定語を伴い、(b) `失注` と `差` を同時に含む行が1行以上、(c) `採用ページ` と `本音` を同時に含む行が1行以上ある"
+  - "DW8: `## ステップ2：入れる前のマスキング3点` 区間に `A社` / `金額` / `担当者名` / `守秘義務` が含まれ `{数字}. ` 行が3行以上あり、`そのまま` を含む行のうち1行以上が否定語を伴う。`## ステップ3：ノートを1つ作る（入れすぎない）` 区間に `10個以内` / `30分` / `迷ったら外す` が含まれ、`案件ごと` / `全部` を含む行のうち各1行以上が否定語を伴う"
+  - "DW9: `## ステップ4：下調べの準備プロンプト（コピペ用）` 区間に正典の**2つ目**のコピーブロック7行が全て逐語で存在し、必須語4つとフェンス2行以上。`## ステップ5：骨組みを出す4段階の指示文（コピペ用）` 区間に正典の**1つ目**のコピーブロック5行が全て逐語で存在し、プレースホルダとフェンス2行以上"
+  - "DW10: `## ステップ6：4段階の読み方（4つ目が本体）` 区間に `5つ` / `10個` / `見出しだけ` / `忖度` / `失注` が含まれ表6行以上、`4つ目`＋`本体|価値`、`褒め`＋否定語、`褒めてもら|褒めさせ|褒めるように` が0件"
+  - "DW11: `## ステップ7：骨を提案書に仕上げる（判断は人がやる）` 区間に `今回だけ` / `判断` / `出典` / `数字`、実体行4行以上、`そのまま`＋否定語、`作業`＋`判断` 同一行。`## ステップ8：週1回10分の追加運用` 区間に `10分` / `3か月` / `1年` / `受注` / `失注`、`週`＋`1回` 同一行、実体行3行以上"
+  - "DW12: (a)〜(g) つまずき/応用/境界/出典の必須語・行数、(e) 逐語コピペ検出0件（2コピーブロック12行を除く）、(f) 禁止文字列10個が0件、(g) 変更ファイル集合が allowlist（NEW 5 + PRE 7）内"
+```
+
+---
+
+## previous_goal_3 (完了・参考)
+
+```yaml
 milestone: threads-pdca スキルの実績データを自動収集ログに切り替え、型/CV を分離ログ化
 phase: p_final (passed, DW1〜DW11 実測)
-decisions:
-  - "D1（ユーザー決定 2026-08-31）: 自動収集ログに無い『狙った型』『コンバージョン』は記録タイミングが違うため1つの表にまとめず、type-log.md（型 / スキルが下書き生成時に自動追記）と conversion-log.md（コンバージョン / 手動・低頻度）の2ファイルに分離する。『欠測を受け入れて記録しない』案は撤回"
 done_criteria:
   - "DW1: SKILL.md の保護区間3つ（参照リポジトリ / ワークフロー1 / 断らせるチェックのコツ）が base 574b9ad とバイト単位で一致し、H2 見出し行そのものも逐語一致し、ワークフロー2手順1〜5と2つの H3 ブロックが逐語残存"
   - "DW2: references/pattern-library.md と draft-queue.md が base から無変更（git diff --numstat が空＋cmp -s 一致）、threads-pdca 配下の新規ファイルが type-log.md と conversion-log.md の2件のみ"
@@ -96,14 +119,33 @@ done_criteria:
 
 ```yaml
 pre_existing_uncommitted:
-  count: 5  # modified 4 + untracked 1（2026-08-31 実測）
+  count: 7  # modified 4 + untracked 3（2026-09-01 実測。reviewer 指摘 C1 で playbook-kubota-ai-adoption-order.md を追加）
   files: |
     M .claude/skills/instagram-pdca/references/my-posts-log.md
     M .claude/skills/instagram-pdca/references/pattern-library.md
     M .claude/skills/video-editing-ffmpeg/SKILL.md
     M .claude/skills/video-editing-ffmpeg/references/shooting-basics.md
     ?? plan/inputs-ai-tools-articles-20260827.md
-  note: 現タスク（threads-pdca 自動ログ化）開始前から作業ツリーに浮いている先行差分。本タスクの成果物ではないため絶対にコミットしないこと（playbook の I-8 PRE / ft3 参照）。`git add -A` / `git commit -a` / `git checkout .` / `git reset --hard` は全て禁止
+    ?? plan/inputs-kubota-ai-adoption-order-20260901.md
+    ?? plan/playbook-kubota-ai-adoption-order.md
+  note: 現タスク（久保田式提案書ノートスキルの新規作成）開始前・作成中から作業ツリーに浮いている先行差分。本タスクの成果物ではないため絶対にコミットしないこと（playbook の I-8 PRE / ft3 参照）。`git add -A` / `git commit -a` / `git checkout .` / `git reset --hard` は全て禁止
+
+kubota_ai_adoption_order_task_in_parallel:
+  files:
+    - plan/inputs-kubota-ai-adoption-order-20260901.md   # 正典（90行）
+    - plan/playbook-kubota-ai-adoption-order.md          # playbook（87,627 バイト・別 pm が作成）
+  note: |
+    久保田亮の X Article「ChatGPTを社員に配って終わる会社と、変わる会社。最初に任せた仕事が違いました。」
+    を 久保田式マーケメソッドmeikara-marketing へ統合する**別タスク**の資産。
+    正典の冒頭に「マーケメソッド追記用」と明記されている。
+    2026-09-01 の提案書ノートスキル作成タスクと**並行して**作業ツリーに出現した
+    （playbook のほうは提案書ノートタスクの playbook 作成中に別 pm が作成）。
+    提案書ノートタスクの正典（plan/inputs-kubota-proposal-notebooklm-20260901.md）とは無関係。
+    提案書ノートタスク側からは PRE 扱いで一切コミットしない。
+    2タスクが同一ブランチ上で並走している状態のため、どちらの ft3 でも
+    `git add -A` / `git commit -a` は特に危険（相手の未完成の成果物を巻き込む）
+    提案書ノートタスク（本タスク）は完了時点でこの2ファイルにまだ未着手。
+    marketing への統合は別タスクとして今後 playbook-kubota-ai-adoption-order.md 側で進める
 
 threads_pdca_manual_log_has_real_data:
   file: .claude/skills/threads-pdca/references/my-posts-log.md
