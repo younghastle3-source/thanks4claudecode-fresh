@@ -20,7 +20,7 @@ triggers:
 ## 出典
 
 - リポジトリ: `github.com/younghastle3-source/training`
-- ファイル: `cj advance/ハイパフォーマンス学/2026-08-21_Part128_大胸筋の徹底解説_YouTube.md`
+- ファイル: `cj advance/ハイパフォーマンス学/【Part128】大胸筋の徹底解説_YouTube.md`
 - 索引は `.claude/skills/クロニクルジャパンcj-advance/references/lecture-index.md`。原文が必要なときは `gh api` で取得する
 
 出典は大胸筋を題材にしているが、抽出しているのは「骨格差 → 可動域設定 → 種目選択」という判断の順序そのもの。他部位にも同じ順序で適用する。

@@ -30,6 +30,20 @@ triggers:
 
 > 上記 2. の「探して読む」の前に、必ず `references/lecture-index.md`（CJ Advance 講義86本の Part 番号・テーマ・パス索引）で該当講義のパスを特定すること。
 
+### 索引の同期（週次）
+
+CJ Advance は毎週更新される。**「索引更新して」「CJアドバンス同期して」「新しい講義入ってる？」と言われたら、下記を実行すること。**
+
+```bash
+python3 .claude/skills/クロニクルジャパンcj-advance/scripts/sync-lecture-index.py          # 確認のみ
+python3 .claude/skills/クロニクルジャパンcj-advance/scripts/sync-lecture-index.py --apply  # 索引を更新
+```
+
+新着・消失・**リネーム**・索引内の重複・各スキルの出典パス切れを検出する。
+リネームは新着チェックでは見つからないため、必ずこのスクリプトで確認する（2026-09-02 に Part123〜128 の6本が一括リネームされ、索引と2スキルの出典が全部切れた実績あり）。
+
+差分が出たら `--apply` して、切り出す価値のある講義があればそのとき判断する。
+
 ## 1. トレーニング学
 
 ### ■ トレーニングの2軸
